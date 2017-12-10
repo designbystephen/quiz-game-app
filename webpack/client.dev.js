@@ -14,8 +14,8 @@ module.exports = {
     './src/client.js'
   ],
   output: {
-    path: path.join(__dirname, '../server/public/js'),
-    filename: './index.js',
+    path: path.resolve(__dirname, '../server/public'),
+    filename: './js/index.js',
     publicPath: '/',
   },
   devServer: {

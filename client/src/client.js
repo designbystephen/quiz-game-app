@@ -7,7 +7,7 @@ import { createStore } from 'redux';
 // import reducers from './reducers/index';
 import App from './App';
 
-const store = createStore();
+const store = createStore(() => {});
 
 const render = (Component) => {
   ReactDOM.render(
@@ -18,7 +18,7 @@ const render = (Component) => {
         </BrowserRouter>
       </Provider>
     </AppContainer>,
-    document.getElementById('reactbody'),
+    document.getElementById('react-app'),
   );
 };
 

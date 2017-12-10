@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
   /*
     http://redux.js.org/docs/recipes/ServerRendering.html
   */
-  const store = createStore(/* reducers */);
+  const store = createStore(() => {});
 
   /*
       We can dispatch actions from server side as well. This can be very useful if you want
