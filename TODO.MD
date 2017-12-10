@@ -10,6 +10,10 @@
 ### Atomic Imports 
 - Index file used for entire directory imports
 
+### Styles
+- ~~Use HMR ready styles for development~~
+- Package styles as files for production
+
 ---
 
 ## Server

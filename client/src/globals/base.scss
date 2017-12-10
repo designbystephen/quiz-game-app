@@ -1,0 +1,13 @@
+@import "variables";
+
+*,
+*::before,
+**::after{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: $base-bg-color;
+    color: $base-color;
+    font: $base-font;
+}
