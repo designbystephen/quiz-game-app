@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ScoreBoard } from './';
 
 const Header = () => (
   <div className="board__header">
-    Replace With Game Name
+    <ScoreBoard title="Change This Game Header" />
   </div>
 );
 
