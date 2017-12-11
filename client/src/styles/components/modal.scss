@@ -12,6 +12,9 @@
   display: flex;
   align-items: center;
 
+  *{
+    text-align: center;
+  }
 
   &__close{
     position: absolute;
@@ -27,10 +30,32 @@
     height: 75vh;
     margin: 0 auto;
     position: relative;
-    padding: 24px;
+    padding: 24px 2.5vmax 2.5vmax 2.5vmax;
   }
 
-  *{
-    text-align: center;
+  &__header{
+    display: flex;
+    align-items: center;
+    height: 10%;
+    font-size: $modal-title-font-size;
   }
+
+  &__header > *{
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  &__content{
+    display: flex;
+    font-size: $modal-font-size;
+    align-items: center;
+    height: 90%;
+  }
+
+  &__content > *{
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  
 }

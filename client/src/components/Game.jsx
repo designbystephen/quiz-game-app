@@ -1,5 +1,6 @@
 import React from 'react';
 import data from '../../mocks/christmas.json';
+import { getValueFromIndex } from '../utils/helpers';
 import { Board, Modal } from './';
 import '../styles/components/game.scss';
 
@@ -21,6 +22,10 @@ class Game extends React.Component {
 
   get selectedCategory() {
     return this.state.data.categories[this.state.activeTile[0]];
+  }
+
+  get selectedValue() {
+    return getValueFromIndex(this.state.activeTile[1]);
   }
 
   setActiveTile(col, row) {
@@ -53,8 +58,8 @@ class Game extends React.Component {
         <Board selectTile={this.selectTile} {...data} />
 
         { this.state.selectedTile &&
-          <Modal title={this.selectedCategory} onClose={this.clearSelectedTile}>
-            {this.state.selectedTile.answer}
+          <Modal title={`${this.selectedCategory}: ${this.selectedValue}`} onClose={this.clearSelectedTile}>
+            {this.state.selectedTile.question}
           </Modal>
         }
       </div>

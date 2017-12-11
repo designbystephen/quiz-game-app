@@ -9,10 +9,14 @@ const Modal = ({ children, title, onClose }) => (
         x Close
       </div>
       <div className="modal__header">
-        { title }
+        <div>
+          { title }
+        </div>
       </div>
       <div className="modal__content">
-        { children }
+        <div>
+          { children }
+        </div>
       </div>
     </div>
   </div>
