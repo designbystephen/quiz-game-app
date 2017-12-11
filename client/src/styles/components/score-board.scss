@@ -1,3 +1,5 @@
+@import "../globals/variables";
+
 .score-board{
   display: flex;
   align-items: center;
@@ -7,5 +9,17 @@
   &__title{
     flex-grow: 1;
     text-align: center;
+    font-size: $score-board-title-font-size;
+  }
+
+  &__team{
+    font-size: $score-board-team-name-font-size;
+    &--right{
+      text-align: right;
+    }
+  }
+
+  &__score{
+    font-size: $score-board-team-score-font-size;
   }
 }

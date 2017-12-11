@@ -19,11 +19,13 @@
     text-align: center;
     height: $tile-height;
     line-height: $tile-height;
+    font-size: $tile-font-size;
   }
 
   &__tile--header{
     height: $tile-height / 2;
     line-height: $tile-height / 2;
+    font-size: $tile-header-font-size;
   }
 }
 
