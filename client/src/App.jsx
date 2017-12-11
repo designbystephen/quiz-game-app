@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 import Home from './pages/Home';
-import './globals/base.scss';
+import './styles/globals/base.scss';
 
 const App = () => (
   <div>
