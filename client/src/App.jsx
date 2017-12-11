@@ -5,7 +5,6 @@ import './styles/globals/base.scss';
 
 const App = () => (
   <div>
-    <h1>Welcome Home</h1>
     <Route exact path="/" component={Home} />
   </div>
 );

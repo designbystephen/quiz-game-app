@@ -1,0 +1,30 @@
+@import "../globals/variables";
+
+.board{
+  width: 100%;
+  overflow: hidden;
+
+  &__header{
+    height: $tile-height / 2;
+  }
+
+  &__tiles{
+    display: flex;
+  }
+
+  &__category{
+    flex-basis: 20%;
+  }
+
+  &__tile{
+    text-align: center;
+    height: $tile-height;
+    line-height: $tile-height;
+  }
+
+  &__tile--header{
+    height: $tile-height / 2;
+    line-height: $tile-height / 2;
+  }
+}
+

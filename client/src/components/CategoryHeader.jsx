@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CategoryHeader = ({ text }) => (
-  <div className={`board__tile baord__tile--header`}>
+  <div className={`board__tile board__tile--header`}>
     { text }
   </div>
 );
