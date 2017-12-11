@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getValueFromIndex } from '../utils/helpers';
 
-const Tile = ({ value, modifiers='' }) => (
-  <div className={`board__tile ${modifiers}`}>
-    { value }
+const Tile = ({ col, row, selectTile }) => (
+  <div
+    className={`board__tile`}
+    onClick={ () => selectTile(col, row)}
+  >
+    { getValueFromIndex(row) }
   </div>
 );
 
 Tile.propTypes = {
-  // required
-  value: PropTypes.number.isRequired,
-
-  // optional
-  modifiers: PropTypes.string,
+  col: PropTypes.number.isRequired,
+  row: PropTypes.number.isRequired,
+  selectTile: PropTypes.func.isRequired,
 };
 
 export default Tile;

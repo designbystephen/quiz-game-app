@@ -1,8 +1,9 @@
 import React from 'react';
+import { Game } from '../components';
 
 const Home = () => (
   <div>
-    <h2>Home Page</h2>
+    <Game />
   </div>
 );
 

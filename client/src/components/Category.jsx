@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Tile from './Tile';
+import { CategoryHeader, Tile } from './';
 
-const Category = ({ columnIndex, name, tiles=[] }) => (
+const Category = ({ name, index, tiles = [], ...rest }) => (
   <div className="board__category">
-    <Tile value={name} modifiers="board__tile--header" />
+    <CategoryHeader text={name} />
     {tiles.map((tile, tileIndex) => (
-      <Tile value={tile.value} />
+      <Tile key={`tile-${index}-${tileIndex}`} col={index} row={tileIndex} {...rest} />
     ))}
   </div>
 );
 
 Category.propTypes = {
   name: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
   tiles: PropTypes.array,
 };
 
