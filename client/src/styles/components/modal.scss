@@ -1,0 +1,27 @@
+@import "../globals/variables";
+
+.modal{
+  background-color: rgba(255,255,255,0.2);
+  // filter: blur(25px);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+
+  &__card{
+    color: $base-color;
+    background-color: $base-bg-color;
+    z-index: 2;
+    width: 75vw;
+    height: 75vh;
+    margin: 0 auto;
+  }
+
+  *{
+    text-align: center;
+  }
+}

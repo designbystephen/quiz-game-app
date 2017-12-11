@@ -5,7 +5,7 @@ import '../styles/components/board.scss';
 
 const Board = ({ categories = [], ...rest }) => (
   <div className="board">
-    <Header />
+    <Header {...rest} />
     <div className="board__tiles">
       {categories.map((category, index) => (
         <Category key={`category-${index}`} index={index} name={category} {...rest} />
@@ -15,7 +15,7 @@ const Board = ({ categories = [], ...rest }) => (
 );
 
 Board.propTypes = {
-  categories: PropTypes.array,
+  categories: PropTypes.array.isRequired,
 };
 
 export default Board;

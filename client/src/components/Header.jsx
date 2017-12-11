@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ScoreBoard } from './';
 
-const Header = () => (
+const Header = ({ title }) => (
   <div className="board__header">
-    <ScoreBoard title="Change This Game Header" />
+    <ScoreBoard title={title} />
   </div>
 );
 
 Header.propTypes = {
+  title: PropTypes.string.isRequired,
 };
 
 export default Header;
