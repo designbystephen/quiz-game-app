@@ -19,6 +19,10 @@ class Game extends React.Component {
     this.clearSelectedTile = this.clearSelectedTile.bind(this);
   }
 
+  get selectedCategory() {
+    return this.state.data.categories[this.state.activeTile[0]];
+  }
+
   setActiveTile(col, row) {
     this.setState({
       activeTile: [col, row],
@@ -49,7 +53,7 @@ class Game extends React.Component {
         <Board selectTile={this.selectTile} {...data} />
 
         { this.state.selectedTile &&
-          <Modal title={this.state.selectedTile.question} onClose={this.clearSelectedTile}>
+          <Modal title={this.selectedCategory} onClose={this.clearSelectedTile}>
             {this.state.selectedTile.answer}
           </Modal>
         }
