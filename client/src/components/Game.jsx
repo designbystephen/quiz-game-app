@@ -10,12 +10,14 @@ class Game extends React.Component {
 
     this.state = {
       data,
+      activeTeam: null,
       activeTile: [0, 0],
       selectedTile: null,
     };
 
     // event handlers
     this.setActiveTile = this.setActiveTile.bind(this);
+    this.setActiveTeam = this.setActiveTeam.bind(this);
     this.selectTile = this.selectTile.bind(this);
     this.clearSelectedTile = this.clearSelectedTile.bind(this);
   }
@@ -26,6 +28,12 @@ class Game extends React.Component {
 
   get selectedValue() {
     return getValueFromIndex(this.state.activeTile[1]);
+  }
+
+  setActiveTeam(number) {
+    this.setState({
+      activeTeam: number,
+    });
   }
 
   setActiveTile(col, row) {
@@ -55,8 +63,12 @@ class Game extends React.Component {
   render() {
     return (
       <div className="game">
-        <Board selectTile={this.selectTile} {...data} />
-
+        <Board
+          selectTile={this.selectTile}
+          activeTeam={this.state.activeTeam}
+          setActiveTeam={this.setActiveTeam}
+          {...data}
+        />
         { this.state.selectedTile &&
           <Modal title={`${this.selectedCategory}: ${this.selectedValue}`} onClose={this.clearSelectedTile}>
             {this.state.selectedTile.question}

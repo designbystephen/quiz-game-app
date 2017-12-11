@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ScoreBoard } from './';
 
-const Header = ({ title }) => (
+const Header = ({ title, ...rest }) => (
   <div className="board__header">
-    <ScoreBoard title={title} />
+    <ScoreBoard title={title} {...rest} />
   </div>
 );
 

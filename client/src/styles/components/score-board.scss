@@ -14,8 +14,14 @@
 
   &__team{
     font-size: $score-board-team-name-font-size;
+    opacity: .75;
+
     &--right{
       text-align: right;
+    }
+
+    &--active{
+      opacity: 1;
     }
   }
 
