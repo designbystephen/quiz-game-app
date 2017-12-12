@@ -2,6 +2,15 @@
   
   "title": "Schroeder Christmas 2017",
   
+  "teams": [
+    {
+      "name": "Team 1"
+    },
+    {
+      "name": "Team 2"
+    }
+  ],
+
   "categories": [
     "Songs",
     "Movies",
@@ -13,110 +22,135 @@
   "tiles": [
     [
       {
+        "id": "1_1",
         "question": "This holiday jingle is about a reindeer hit-and-run on Christmas Eve.",
         "answer": "Grandma Got Run Over by a Reindeer"
       },
       {
+        "id": "1_2",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "1_3",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "1_4",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "1_5",
         "question": "this is a question",
         "answer": "This is an answer"
       }
     ],
     [
       {
+        "id": "2_1",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "2_2",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "2_3",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "2_4",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "2_5",
         "question": "this is a question",
         "answer": "This is an answer"
       }
     ],
     [
       {
+        "id": "3_1",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "3_2",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "3_3",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "3_4",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "3_5",
         "question": "this is a question",
         "answer": "This is an answer"
       }
     ],
     [
       {
+        "id": "4_1",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "4_2",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "4_3",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "4_4",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "4_5",
         "question": "this is a question",
         "answer": "This is an answer"
       }
     ],
     [
       {
+        "id": "5_1",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "5_2",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "5_3",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "5_4",
         "question": "this is a question",
         "answer": "This is an answer"
       },
       {
+        "id": "5_5",
         "question": "this is a question",
         "answer": "This is an answer"
       }

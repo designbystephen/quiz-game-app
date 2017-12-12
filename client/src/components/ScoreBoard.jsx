@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { constructClassName } from '../utils/helpers';
 import '../styles/components/score-board.scss';
 
-const ScoreBoard = ({ title, activeTeam, setActiveTeam }) => (
+const ScoreBoard = ({ title, activeTeam, setActiveTeam, team1Score, team2Score }) => (
   <div className="score-board">
     <div
       className={constructClassName(
@@ -12,7 +12,9 @@ const ScoreBoard = ({ title, activeTeam, setActiveTeam }) => (
       )}
       onClick={() => setActiveTeam(1)}
     >
-      <div className="score-board__score">$0</div>
+      <div className="score-board__score">
+        $ {team1Score}
+      </div>
       Team 1
     </div>
     <div className="score-board__title">
@@ -26,7 +28,9 @@ const ScoreBoard = ({ title, activeTeam, setActiveTeam }) => (
       )}
       onClick={() => setActiveTeam(2)}
     >
-      <div className="score-board__score">$0</div>
+      <div className="score-board__score">
+        $ {team2Score}
+      </div>
       Team 2
     </div>
   </div>
@@ -34,6 +38,8 @@ const ScoreBoard = ({ title, activeTeam, setActiveTeam }) => (
 
 ScoreBoard.propTypes = {
   title: PropTypes.string.isRequired,
+  setActiveTeam: PropTypes.func.isRequired,
+  activeTeam: PropTypes.number,
 };
 
 export default ScoreBoard;
