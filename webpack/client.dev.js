@@ -9,7 +9,7 @@ module.exports = {
   resolve: { extensions: ['.js', '.jsx'] },
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
+    'webpack-dev-server/client?http://localhost:5000',
     'webpack/hot/only-dev-server',
     './src/client.js'
   ],

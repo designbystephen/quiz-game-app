@@ -4,7 +4,7 @@
   "description": "Boilerplate for ReactJS project with ExpressJS server",
   "main": "server/bin/server.js",
   "scripts": {
-    "dev": "webpack-dev-server --config webpack/client.dev.js",
+    "dev": "webpack-dev-server --config webpack/client.dev.js --port 5000",
     "build": "npm run build:client && npm run build:server",
     "build:server": "cross-env NODE_ENV=production webpack --config webpack/server.prod.js --progress",
     "build:client": "cross-env NODE_ENV=production webpack --config webpack/client.prod.js --progress",
