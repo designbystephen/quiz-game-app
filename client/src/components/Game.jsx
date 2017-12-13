@@ -135,6 +135,8 @@ class Game extends React.Component {
           setActiveTeam={this.setActiveTeam}
           team1Score={this.team1Score}
           team2Score={this.team2Score}
+          hasRight={this.hasRight}
+          hasWrong={this.hasWrong}
           {...data}
         />
         { this.state.selectedTile &&

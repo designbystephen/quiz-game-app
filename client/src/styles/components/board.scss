@@ -27,5 +27,13 @@
     line-height: $tile-height / 2;
     font-size: $tile-header-font-size;
   }
+
+  &__tile--team1{
+    color: red;
+  }
+
+  &__tile--team2{
+    color: blue;
+  }
 }
 
