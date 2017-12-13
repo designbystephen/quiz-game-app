@@ -35,5 +35,9 @@
   &__tile--team2{
     color: blue;
   }
+
+  &__tile--locked{
+    text-decoration: line-through;
+  }
 }
 

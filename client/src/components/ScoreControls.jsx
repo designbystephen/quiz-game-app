@@ -14,16 +14,20 @@ const ScoreCheck = ({ teamNo, deductPoints, awardPoints, hasWrong, hasRight, til
   </div>
 );
 
-const ScoreControls = ({ ...rest }) => (
+const ScoreControls = ({ tileId, toggleTileLock, isLocked, ...rest }) => (
   <div>
     <div>
       Team 1
-      <ScoreCheck teamNo="1" {...rest} />
+      <ScoreCheck teamNo="1" tileId={tileId} {...rest} />
     </div>
     <div>
       Team 2
-      <ScoreCheck teamNo="2" {...rest} />
+      <ScoreCheck teamNo="2"  tileId={tileId} {...rest} />
     </div>
+    <label>
+      Locked
+      <input type="checkbox" onChange={() => toggleTileLock(tileId)} checked={isLocked(tileId)} />
+    </label>
   </div>
 );
 

@@ -6,7 +6,7 @@ const Category = ({ name, index, tiles = [], ...rest }) => (
   <div className="board__category">
     <CategoryHeader text={name} />
     {tiles.map((tile, tileIndex) => (
-      <Tile key={`tile-${index}-${tileIndex}`} col={index} row={tileIndex} tile={tile[index]} {...rest} />
+      <Tile key={`tile-${index}-${tileIndex}`} col={index} row={tileIndex} tile={tile[tileIndex]} {...rest} />
     ))}
   </div>
 );

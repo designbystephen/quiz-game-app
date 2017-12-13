@@ -1,6 +1,6 @@
 import React from 'react';
 import { get } from 'lodash/object';
-import { findIndex, pull } from 'lodash/array';
+import { findIndex, pull, union } from 'lodash/array';
 import data from '../../mocks/christmas.json';
 import { getValueFromIndex } from '../utils/helpers';
 import { Board, Modal, ScoreControls } from './';
@@ -19,6 +19,9 @@ class Game extends React.Component {
       team1Wrong: [],
       team2Right: [],
       team2Wrong: [],
+      lockedTiles: [],
+      moderatorLock: true,
+      escapeFunc: () => {},
     };
 
     // event handlers
@@ -30,6 +33,8 @@ class Game extends React.Component {
     this.deductPoints = this.deductPoints.bind(this);
     this.hasRight = this.hasRight.bind(this);
     this.hasWrong = this.hasWrong.bind(this);
+    this.toggleTileLock = this.toggleTileLock.bind(this);
+    this.isLocked = this.isLocked.bind(this);
   }
 
   get selectedCategory() {
@@ -84,6 +89,10 @@ class Game extends React.Component {
     return get(this.state, `team${team}Wrong`, []).indexOf(id) >= 0;
   }
 
+  isLocked(id) {
+    return this.state.lockedTiles.indexOf(id) >= 0;
+  }
+
   selectTile(col, row) {
     const tile = this.state.data.tiles[col][row];
 
@@ -103,27 +112,26 @@ class Game extends React.Component {
   }
 
   awardPoints(team, id) {
-    console.log(team === '1' ? '2' : '1');
-    this.setState({
+    this.setState(prevState => ({
       [`team${team}Wrong`]: pull(this.state[`team${team}Wrong`], id),
-      [`team${team}Right`]: pull(this.state[`team${team}Right`], id),
       [`team${team === '1' ? '2' : '1'}Right`]: pull(this.state[`team${team === '1' ? '2' : '1'}Right`], id),
-    }, () => {
-      this.setState(prevState => ({
-        [`team${team}Right`]: prevState[`team${team}Right`].concat([id]),
-      }));
-    });
+      [`team${team}Right`]: union(prevState[`team${team}Right`], [id]),
+    }));
   }
 
   deductPoints(team, id) {
-    this.setState({
-      [`team${team}Wrong`]: pull(this.state[`team${team}Wrong`], id),
+    this.setState(prevState => ({
       [`team${team}Right`]: pull(this.state[`team${team}Right`], id),
-    }, () => {
-      this.setState(prevState => ({
-        [`team${team}Wrong`]: prevState[`team${team}Wrong`].concat([id]),
-      }));
-    });
+      [`team${team}Wrong`]: union(prevState[`team${team}Wrong`], [id]),
+    }));
+  }
+
+  toggleTileLock(id) {
+    this.setState(prevState => ({
+      lockedTiles: prevState.lockedTiles.indexOf(id) >= 0
+        ? pull(prevState.lockedTiles, id)
+        : union(prevState.lockedTiles, [id]),
+    }));
   }
 
   render() {
@@ -137,6 +145,7 @@ class Game extends React.Component {
           team2Score={this.team2Score}
           hasRight={this.hasRight}
           hasWrong={this.hasWrong}
+          isLocked={this.isLocked}
           {...data}
         />
         { this.state.selectedTile &&
@@ -148,6 +157,8 @@ class Game extends React.Component {
               deductPoints={this.deductPoints}
               hasRight={this.hasRight}
               hasWrong={this.hasWrong}
+              toggleTileLock={this.toggleTileLock}
+              isLocked={this.isLocked}
             />
           </Modal>
         }
