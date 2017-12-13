@@ -2,8 +2,8 @@ import React from 'react';
 import { get } from 'lodash/object';
 import { findIndex } from 'lodash/array';
 import data from '../../mocks/christmas.json';
-import { getValueFromIndex } from '../utils/helpers';
-import { Board, Modal } from './';
+import { getValueFromIndex, removeValueFromArray } from '../utils/helpers';
+import { Board, Modal, ScoreControls } from './';
 import '../styles/components/game.scss';
 
 class Game extends React.Component {
@@ -26,6 +26,10 @@ class Game extends React.Component {
     this.setActiveTeam = this.setActiveTeam.bind(this);
     this.selectTile = this.selectTile.bind(this);
     this.clearSelectedTile = this.clearSelectedTile.bind(this);
+    this.awardPoints = this.awardPoints.bind(this);
+    this.deductPoints = this.deductPoints.bind(this);
+    this.hasRight = this.hasRight.bind(this);
+    this.hasWrong = this.hasWrong.bind(this);
   }
 
   get selectedCategory() {
@@ -72,6 +76,14 @@ class Game extends React.Component {
     });
   }
 
+  hasRight(team, id) {
+    return get(this.state, `team${team}Right`, []).indexOf(id) >= 0;
+  }
+
+  hasWrong(team, id) {
+    return get(this.state, `team${team}Wrong`, []).indexOf(id) >= 0;
+  }
+
   selectTile(col, row) {
     const tile = this.state.data.tiles[col][row];
 
@@ -90,18 +102,20 @@ class Game extends React.Component {
     });
   }
 
-  awardTeam(team, id) {
+  awardPoints(team, id) {    
     if (!this.state[`team${team}Right`].includes(id)) {
       this.setState(prevState => ({
         [`team${team}Right`]: prevState[`team${team}Right`].concat([id]),
+        [`team${team}Wrong`]: removeValueFromArray(id, this.state[`team${team}Wrong`]),
       }));
     }
   }
 
-  deductTeam(team, id) {
+  deductPoints(team, id) {
     if (!this.state[`team${team}Wrong`].includes(id)) {
       this.setState(prevState => ({
         [`team${team}Wrong`]: prevState[`team${team}Wrong`].concat([id]),
+        [`team${team}Right`]: removeValueFromArray(id, this.state[`team${team}Right`]),
       }));
     }
   }
@@ -120,19 +134,13 @@ class Game extends React.Component {
         { this.state.selectedTile &&
           <Modal title={`${this.selectedCategory}: ${this.selectedValue}`} onClose={this.clearSelectedTile}>
             {this.state.selectedTile.question}
-            <button type="button" onClick={() => this.awardTeam(1, this.state.selectedTile.id)}>
-              Yes Team 1
-            </button>
-            <button type="button" onClick={() => this.awardTeam(2, this.state.selectedTile.id)}>
-              Yes Team 2
-            </button>
-
-            <button type="button" onClick={() => this.deductTeam(1, this.state.selectedTile.id)}>
-              No Team 1
-            </button>
-            <button type="button" onClick={() => this.deductTeam(2, this.state.selectedTile.id)}>
-              No Team 2
-            </button>
+            <ScoreControls
+              tileId={this.state.selectedTile.id}
+              awardPoints={this.awardPoints}
+              deductPoints={this.deductPoints}
+              hasRight={this.hasRight}
+              hasWrong={this.hasWrong}
+            />
           </Modal>
         }
       </div>
