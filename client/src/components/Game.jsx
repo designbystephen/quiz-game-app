@@ -1,8 +1,8 @@
 import React from 'react';
 import { get } from 'lodash/object';
-import { findIndex } from 'lodash/array';
+import { findIndex, pull } from 'lodash/array';
 import data from '../../mocks/christmas.json';
-import { getValueFromIndex, removeValueFromArray } from '../utils/helpers';
+import { getValueFromIndex } from '../utils/helpers';
 import { Board, Modal, ScoreControls } from './';
 import '../styles/components/game.scss';
 
@@ -102,22 +102,28 @@ class Game extends React.Component {
     });
   }
 
-  awardPoints(team, id) {    
-    if (!this.state[`team${team}Right`].includes(id)) {
+  awardPoints(team, id) {
+    console.log(team === '1' ? '2' : '1');
+    this.setState({
+      [`team${team}Wrong`]: pull(this.state[`team${team}Wrong`], id),
+      [`team${team}Right`]: pull(this.state[`team${team}Right`], id),
+      [`team${team === '1' ? '2' : '1'}Right`]: pull(this.state[`team${team === '1' ? '2' : '1'}Right`], id),
+    }, () => {
       this.setState(prevState => ({
         [`team${team}Right`]: prevState[`team${team}Right`].concat([id]),
-        [`team${team}Wrong`]: removeValueFromArray(id, this.state[`team${team}Wrong`]),
       }));
-    }
+    });
   }
 
   deductPoints(team, id) {
-    if (!this.state[`team${team}Wrong`].includes(id)) {
+    this.setState({
+      [`team${team}Wrong`]: pull(this.state[`team${team}Wrong`], id),
+      [`team${team}Right`]: pull(this.state[`team${team}Right`], id),
+    }, () => {
       this.setState(prevState => ({
         [`team${team}Wrong`]: prevState[`team${team}Wrong`].concat([id]),
-        [`team${team}Right`]: removeValueFromArray(id, this.state[`team${team}Right`]),
       }));
-    }
+    });
   }
 
   render() {

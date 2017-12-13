@@ -1,7 +1,5 @@
 /* eslint import/prefer-default-export: 0 */
 
-import { findIndex } from 'lodash/array';
-
 export const getValueFromIndex = index => 200 * (index + 1);
 
 export const constructClassName = (...args) => (
@@ -17,13 +15,3 @@ export const constructClassName = (...args) => (
     return `${classString} ${pair}`;
   }, '')
 );
-
-export const removeValueFromArray = (value, array) => {
-  const index = findIndex(array, value);
-
-  if (index >= 0) {
-    array.splice(index, 1);
-  }
-
-  return array;
-};
