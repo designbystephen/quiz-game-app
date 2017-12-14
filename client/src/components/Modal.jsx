@@ -17,6 +17,7 @@ class Modal extends React.Component {
 
     this.state = {
       optionsOpen: false,
+      stage: 'question',
     };
 
     this.toggleOptions = this.toggleOptions.bind(this);
@@ -43,7 +44,8 @@ class Modal extends React.Component {
           </div>
           <div className="modal__content">
             <div>
-              { tile.question }
+              { this.state.stage === 'question' && tile.question }
+              { this.state.stage === 'answer' && tile.answer }
             </div>
           </div>
           <div className="modal__controls">

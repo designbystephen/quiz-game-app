@@ -24,7 +24,14 @@ const ScoreCheck = ({ teamNo, deductPoints, awardPoints, isWrong, isRight, tileI
   </span>
 );
 
-const ScoreControls = ({ tileId, toggleTileLock, isLocked, hasModeratorLock, toggleModeratorLock, ...rest }) => (
+const ScoreControls = ({
+  tileId,
+  toggleTileLock,
+  isLocked,
+  hasModeratorLock,
+  toggleModeratorLock,
+  ...rest
+}) => (
   <div>
     <div>
       Team 1
