@@ -10,5 +10,9 @@
   &__tiles{
     display: flex;
   }
+
+  &--blur{
+    filter: blur($overlay-blur);
+  }
 }
 

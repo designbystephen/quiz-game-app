@@ -170,6 +170,7 @@ class Game extends React.Component {
     return (
       <div className="game">
         <Board
+          tile={this.state.selectedTile}
           selectTile={this.selectTile}
           activeTeam={this.state.activeTeam}
           setActiveTeam={this.setActiveTeam}

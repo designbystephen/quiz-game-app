@@ -28,8 +28,7 @@
   }
 
   &__overlay{
-    background-color: rgba(255,255,255,0.2);
-    filter: blur(50px);
+    background: $modal-overlay-bg;
     position: absolute;
     top: 0;
     right: 0;
