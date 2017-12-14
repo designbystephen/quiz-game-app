@@ -112,18 +112,43 @@ class Game extends React.Component {
   }
 
   awardPoints(team, id) {
-    this.setState(prevState => ({
-      [`team${team}Wrong`]: pull(this.state[`team${team}Wrong`], id),
-      [`team${team === '1' ? '2' : '1'}Right`]: pull(this.state[`team${team === '1' ? '2' : '1'}Right`], id),
-      [`team${team}Right`]: union(prevState[`team${team}Right`], [id]),
-    }));
+    this.setState((prevState) => {
+      const state = {
+        // remove wrong tally
+        [`team${team}Wrong`]: pull(this.state[`team${team}Wrong`], id),
+
+        // remove another team's right tally
+        [`team${team === '1' ? '2' : '1'}Right`]: pull(this.state[`team${team === '1' ? '2' : '1'}Right`], id),
+      };
+
+      if (prevState[`team${team}Right`].indexOf(id) >= 0) {
+        // toggle points (remove awarded points)
+        state[`team${team}Right`] = pull(prevState[`team${team}Right`], id);
+      } else {
+        // award points
+        state[`team${team}Right`] = union(prevState[`team${team}Right`], [id]);
+      }
+
+      return state;
+    });
   }
 
   deductPoints(team, id) {
-    this.setState(prevState => ({
-      [`team${team}Right`]: pull(this.state[`team${team}Right`], id),
-      [`team${team}Wrong`]: union(prevState[`team${team}Wrong`], [id]),
-    }));
+    this.setState((prevState) => {
+      const state = {
+        [`team${team}Right`]: pull(this.state[`team${team}Right`], id),
+      };
+
+      if (prevState[`team${team}Wrong`].indexOf(id) >= 0) {
+        // toggle points (remove deducted points)
+        state[`team${team}Wrong`] = pull(prevState[`team${team}Wrong`], id);
+      } else {
+        // deduct points
+        state[`team${team}Wrong`] = union(prevState[`team${team}Wrong`], [id]);
+      }
+
+      return state;
+    });
   }
 
   toggleTileLock(id) {
