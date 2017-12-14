@@ -24,7 +24,7 @@ const ScoreCheck = ({ teamNo, deductPoints, awardPoints, isWrong, isRight, tileI
   </span>
 );
 
-const ScoreControls = ({ tileId, toggleTileLock, isLocked, ...rest }) => (
+const ScoreControls = ({ tileId, toggleTileLock, isLocked, hasModeratorLock, toggleModeratorLock, ...rest }) => (
   <div>
     <div>
       Team 1
@@ -42,6 +42,18 @@ const ScoreControls = ({ tileId, toggleTileLock, isLocked, ...rest }) => (
           type="checkbox"
           onChange={() => toggleTileLock(tileId)}
           checked={isLocked(tileId)}
+        />
+        Locked
+      </label>
+    </div>
+    <div>
+      Moderator
+      <label htmlFor="moderatorLockCheckbox">
+        <input
+          id="moderatorLockCheckbox"
+          type="checkbox"
+          onChange={() => toggleModeratorLock(tileId)}
+          checked={hasModeratorLock}
         />
         Locked
       </label>

@@ -20,7 +20,7 @@ class Game extends React.Component {
       team2Right: [],
       team2Wrong: [],
       lockedTiles: [],
-      moderatorLock: true,
+      hasModeratorLock: true,
       escapeFunc: () => {},
     };
 
@@ -35,6 +35,7 @@ class Game extends React.Component {
     this.isWrong = this.isWrong.bind(this);
     this.toggleTileLock = this.toggleTileLock.bind(this);
     this.isLocked = this.isLocked.bind(this);
+    this.toggleModeratorLock = this.toggleModeratorLock.bind(this);
   }
 
   get selectedCategory() {
@@ -79,6 +80,12 @@ class Game extends React.Component {
     this.setState({
       activeTile: [col, row],
     });
+  }
+
+  toggleModeratorLock() {
+    this.setState(prevState => ({
+      hasModeratorLock: !prevState.hasModeratorLock,
+    }));
   }
 
   isRight(team, id) {
@@ -171,6 +178,7 @@ class Game extends React.Component {
           isRight={this.isRight}
           isWrong={this.isWrong}
           isLocked={this.isLocked}
+          hasModeratorLock={this.state.hasModeratorLock}
           {...data}
         />
         { this.state.selectedTile &&
@@ -184,6 +192,8 @@ class Game extends React.Component {
             isWrong={this.isWrong}
             toggleTileLock={this.toggleTileLock}
             isLocked={this.isLocked}
+            hasModeratorLock={this.state.hasModeratorLock}
+            toggleModeratorLock={this.toggleModeratorLock}
           />
         }
       </div>
