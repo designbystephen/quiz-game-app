@@ -21,11 +21,11 @@
   }
   
   &--team1{
-    color: red;
+    color: $team-1-color;
   }
   
   &--team2{
-    color: blue;
+    color: $team-2-color;
   }
   
   &--locked{

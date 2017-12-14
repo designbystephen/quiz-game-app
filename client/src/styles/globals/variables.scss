@@ -4,6 +4,9 @@ $base-font-family: Arial, Helvetica, sans-serif;
 $base-font-size: 14px;
 $base-font: $base-font-size $base-font-family;
 
+$team-1-color: red;
+$team-2-color: blue;
+
 $score-board-title-font-size: 1.50vmax;
 $score-board-team-name-font-size: .75vmax;
 $score-board-team-score-font-size: 1.50vmax;
@@ -11,6 +14,7 @@ $score-board-team-score-font-size: 1.50vmax;
 $tile-height: 16.66666666666667vh;
 $tile-font-size: 2.5vmax;
 $tile-header-font-size: 1.50vmax;
+$tile-hover-bg-color: rgba(0, 0, 0, 0.25);
 
-$modal-font-size: 3.5vmax;
-$modal-title-font-size: 1.75vmax;
+$modal-font-size: 3.5vmin;
+$modal-title-font-size: 1.75vmin;

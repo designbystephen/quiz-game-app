@@ -1,17 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ScoreCheck = ({ teamNo, deductPoints, awardPoints, hasWrong, hasRight, tileId }) => (
-  <div>
-    <label>
-      <input type="checkbox" onChange={() => awardPoints(teamNo, tileId)} checked={hasRight(teamNo, tileId) === true} />
+const ScoreCheck = ({ teamNo, deductPoints, awardPoints, isWrong, isRight, tileId }) => (
+  <span>
+    <label htmlFor={`team${teamNo}AwardCheckbox`}>
+      <input
+        id={`team${teamNo}AwardCheckbox`}
+        type="checkbox"
+        onChange={() => awardPoints(teamNo, tileId)}
+        checked={isRight(teamNo, tileId) === true}
+      />
       Right
     </label>
-    <label>
-      <input type="checkbox" onChange={() => deductPoints(teamNo, tileId)} checked={hasWrong(teamNo, tileId) === true} />
+    <label htmlFor={`team${teamNo}DeductCheckbox`}>
+      <input
+        id={`team${teamNo}DeductCheckbox`}
+        type="checkbox"
+        onChange={() => deductPoints(teamNo, tileId)}
+        checked={isWrong(teamNo, tileId) === true}
+      />
       Wrong
     </label>
-  </div>
+  </span>
 );
 
 const ScoreControls = ({ tileId, toggleTileLock, isLocked, ...rest }) => (
@@ -22,12 +32,20 @@ const ScoreControls = ({ tileId, toggleTileLock, isLocked, ...rest }) => (
     </div>
     <div>
       Team 2
-      <ScoreCheck teamNo="2"  tileId={tileId} {...rest} />
+      <ScoreCheck teamNo="2" tileId={tileId} {...rest} />
     </div>
-    <label>
-      Locked
-      <input type="checkbox" onChange={() => toggleTileLock(tileId)} checked={isLocked(tileId)} />
-    </label>
+    <div>
+      Tile
+      <label htmlFor="tileLockCheckbox">
+        <input
+          id="tileLockCheckbox"
+          type="checkbox"
+          onChange={() => toggleTileLock(tileId)}
+          checked={isLocked(tileId)}
+        />
+        Locked
+      </label>
+    </div>
   </div>
 );
 

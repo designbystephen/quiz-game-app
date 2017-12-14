@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { getValueFromIndex, constructClassName } from '../utils/helpers';
 import '../styles/components/tile.scss';
 
-const Tile = ({ col, row, selectTile, tile, hasWrong, hasRight, isLocked }) => {
+const Tile = ({ col, row, selectTile, tile, isRight, isLocked }) => {
   return (
     <button
+      type="button"
       className={constructClassName(
         'tile',
-        [hasRight(1, tile.id), 'tile--team1'],
-        [hasRight(2, tile.id), 'tile--team2'],
+        [isRight(1, tile.id), 'tile--team1'],
+        [isRight(2, tile.id), 'tile--team2'],
         [isLocked(tile.id), 'tile--locked'],
       )}
       onClick={() => selectTile(col, row)}
@@ -23,6 +24,9 @@ Tile.propTypes = {
   col: PropTypes.number.isRequired,
   row: PropTypes.number.isRequired,
   selectTile: PropTypes.func.isRequired,
+  tile: PropTypes.object.isRequired,
+  isRight: PropTypes.func.isRequired,
+  isLocked: PropTypes.func.isRequired,
 };
 
 export default Tile;

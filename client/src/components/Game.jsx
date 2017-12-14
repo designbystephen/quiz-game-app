@@ -3,7 +3,7 @@ import { get } from 'lodash/object';
 import { findIndex, pull, union } from 'lodash/array';
 import data from '../../mocks/christmas.json';
 import { getValueFromIndex } from '../utils/helpers';
-import { Board, Modal, ScoreControls } from './';
+import { Board, Modal } from './';
 import '../styles/components/game.scss';
 
 class Game extends React.Component {
@@ -31,8 +31,8 @@ class Game extends React.Component {
     this.clearSelectedTile = this.clearSelectedTile.bind(this);
     this.awardPoints = this.awardPoints.bind(this);
     this.deductPoints = this.deductPoints.bind(this);
-    this.hasRight = this.hasRight.bind(this);
-    this.hasWrong = this.hasWrong.bind(this);
+    this.isRight = this.isRight.bind(this);
+    this.isWrong = this.isWrong.bind(this);
     this.toggleTileLock = this.toggleTileLock.bind(this);
     this.isLocked = this.isLocked.bind(this);
   }
@@ -81,11 +81,11 @@ class Game extends React.Component {
     });
   }
 
-  hasRight(team, id) {
+  isRight(team, id) {
     return get(this.state, `team${team}Right`, []).indexOf(id) >= 0;
   }
 
-  hasWrong(team, id) {
+  isWrong(team, id) {
     return get(this.state, `team${team}Wrong`, []).indexOf(id) >= 0;
   }
 
@@ -143,24 +143,23 @@ class Game extends React.Component {
           setActiveTeam={this.setActiveTeam}
           team1Score={this.team1Score}
           team2Score={this.team2Score}
-          hasRight={this.hasRight}
-          hasWrong={this.hasWrong}
+          isRight={this.isRight}
+          isWrong={this.isWrong}
           isLocked={this.isLocked}
           {...data}
         />
         { this.state.selectedTile &&
-          <Modal title={`${this.selectedCategory}: ${this.selectedValue}`} onClose={this.clearSelectedTile}>
-            {this.state.selectedTile.question}
-            <ScoreControls
-              tileId={this.state.selectedTile.id}
-              awardPoints={this.awardPoints}
-              deductPoints={this.deductPoints}
-              hasRight={this.hasRight}
-              hasWrong={this.hasWrong}
-              toggleTileLock={this.toggleTileLock}
-              isLocked={this.isLocked}
-            />
-          </Modal>
+          <Modal
+            title={`${this.selectedCategory}: ${this.selectedValue}`}
+            tile={this.state.selectedTile}
+            onClose={this.clearSelectedTile}
+            awardPoints={this.awardPoints}
+            deductPoints={this.deductPoints}
+            isRight={this.isRight}
+            isWrong={this.isWrong}
+            toggleTileLock={this.toggleTileLock}
+            isLocked={this.isLocked}
+          />
         }
       </div>
     );

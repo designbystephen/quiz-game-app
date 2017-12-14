@@ -1,8 +1,7 @@
 @import "../globals/variables";
 
 .modal{
-  background-color: rgba(255,255,255,0.2);
-  // filter: blur(25px);
+  background-color: transparent;
   top: 0;
   left: 0;
   right: 0;
@@ -11,6 +10,7 @@
   z-index: 1;
   display: flex;
   align-items: center;
+  font-size: $modal-font-size;
 
   *{
     text-align: center;
@@ -18,8 +18,27 @@
 
   &__close{
     position: absolute;
+    color: inherit;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
     top: 12px;
     right: 12px;
+  }
+
+  &__overlay{
+    background-color: rgba(255,255,255,0.2);
+    filter: blur(50px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
   }
 
   &__card{
@@ -47,7 +66,6 @@
 
   &__content{
     display: flex;
-    font-size: $modal-font-size;
     align-items: center;
     height: 90%;
   }
@@ -57,5 +75,22 @@
     flex-grow: 1;
   }
 
-  
+  &__show-controls{
+    background-color: transparent;
+    color: inherit;    
+    border: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+  }
+
+  &__controls{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    width: 75%;
+    margin: 0 auto;
+  }
 }
