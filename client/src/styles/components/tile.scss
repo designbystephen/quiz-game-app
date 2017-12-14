@@ -1,0 +1,34 @@
+@import "../globals/variables";
+
+.tile{
+  text-align: center;
+  height: $tile-height;
+  line-height: $tile-height;
+  font-size: $tile-font-size;
+  display: block;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  text-align: center;
+  width: 100%;
+
+  &--header{
+    height: $tile-height / 2;
+    line-height: $tile-height / 2;
+    font-size: $tile-header-font-size;
+  }
+  
+  &--team1{
+    color: red;
+  }
+  
+  &--team2{
+    color: blue;
+  }
+  
+  &--locked{
+    text-decoration: line-through;
+  }
+}

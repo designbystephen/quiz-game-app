@@ -10,34 +10,5 @@
   &__tiles{
     display: flex;
   }
-
-  &__category{
-    flex-basis: 20%;
-  }
-
-  &__tile{
-    text-align: center;
-    height: $tile-height;
-    line-height: $tile-height;
-    font-size: $tile-font-size;
-  }
-
-  &__tile--header{
-    height: $tile-height / 2;
-    line-height: $tile-height / 2;
-    font-size: $tile-header-font-size;
-  }
-
-  &__tile--team1{
-    color: red;
-  }
-
-  &__tile--team2{
-    color: blue;
-  }
-
-  &__tile--locked{
-    text-decoration: line-through;
-  }
 }
 

@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getValueFromIndex, constructClassName } from '../utils/helpers';
+import '../styles/components/tile.scss';
 
 const Tile = ({ col, row, selectTile, tile, hasWrong, hasRight, isLocked }) => {
-  // TODO: hasRight as const
   return (
-    <div
+    <button
       className={constructClassName(
-        'board__tile',
-        [hasRight(1, tile.id), 'board__tile--team1'],
-        [hasRight(2, tile.id), 'board__tile--team2'],
-        [isLocked(tile.id), 'board__tile--locked'],
+        'tile',
+        [hasRight(1, tile.id), 'tile--team1'],
+        [hasRight(2, tile.id), 'tile--team2'],
+        [isLocked(tile.id), 'tile--locked'],
       )}
-      onClick={ () => selectTile(col, row)}
+      onClick={() => selectTile(col, row)}
     >
       { getValueFromIndex(row) }
-    </div>
+    </button>
   );
 };
 
