@@ -30,9 +30,17 @@ const ScoreControls = ({
   isLocked,
   hasModeratorLock,
   toggleModeratorLock,
+  nextStage,
+  prevStage,
+  currentStage,
   ...rest
 }) => (
   <div>
+    <div>
+      <button type="button" id="prevStageButton" onClick={prevStage}>Prev</button>
+      { currentStage }
+      <button type="button" id="nextStageButton" onClick={nextStage}>Next</button>
+    </div>
     <div>
       Team 1
       <ScoreCheck teamNo="1" tileId={tileId} {...rest} />
