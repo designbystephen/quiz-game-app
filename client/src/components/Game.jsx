@@ -36,6 +36,7 @@ class Game extends React.Component {
     this.toggleTileLock = this.toggleTileLock.bind(this);
     this.isLocked = this.isLocked.bind(this);
     this.toggleModeratorLock = this.toggleModeratorLock.bind(this);
+    this.setModeratorLock = this.setModeratorLock.bind(this);
   }
 
   get selectedCategory() {
@@ -82,9 +83,15 @@ class Game extends React.Component {
     });
   }
 
+  setModeratorLock(isLocked) {
+    this.setState({
+      hasModeratorLock: isLocked,
+    });
+  }
+
   toggleModeratorLock() {
     this.setState(prevState => ({
-      hasModeratorLock: false,
+      hasModeratorLock: !prevState.hasModeratorLock,
     }));
   }
 
@@ -194,6 +201,7 @@ class Game extends React.Component {
             toggleTileLock={this.toggleTileLock}
             isLocked={this.isLocked}
             hasModeratorLock={this.state.hasModeratorLock}
+            setModeratorLock={this.setModeratorLock}
             toggleModeratorLock={this.toggleModeratorLock}
             activeTeam={this.state.activeTeam}
             setActiveTeam={this.setActiveTeam}

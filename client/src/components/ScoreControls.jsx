@@ -76,7 +76,7 @@ const ScoreControls = ({
           id="moderatorLockCheckbox"
           type="checkbox"
           onChange={toggleModeratorLock}
-          checked={hasModeratorLock === true}
+          checked={hasModeratorLock}
         />
         Locked
       </label>

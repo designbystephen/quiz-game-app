@@ -16,6 +16,7 @@ class Modal extends React.Component {
       setActiveTeam: PropTypes.func.isRequired,
       awardPoints: PropTypes.func.isRequired,
       deductPoints: PropTypes.func.isRequired,
+      setModeratorLock: PropTypes.func.isRequired,
 
       activeTeam: PropTypes.any,
     };
@@ -33,7 +34,7 @@ class Modal extends React.Component {
     this.state = {
       optionsOpen: false,
       stage: 0,
-      elapsed: 0,
+      elapsed: 1,
       answeringTeam: null,
     };
 
@@ -84,11 +85,12 @@ class Modal extends React.Component {
     this.setState((prevState) => {
       const nextTick = round(prevState.elapsed + (interval / 1000), 1);
       if (nextTick >= this.timeLimit) {
+        this.props.setModeratorLock(true);
         this.clearTimer();
       }
 
       return {
-        elapsed: nextTick >= this.timeLimit ? 0 : nextTick,
+        elapsed: nextTick > this.timeLimit ? 1 : nextTick,
       };
     });
   }
@@ -115,7 +117,7 @@ class Modal extends React.Component {
     this.actionTimer = null;
 
     this.setState({
-      elapsed: 0,
+      elapsed: 1,
     });
   }
 
@@ -143,7 +145,9 @@ class Modal extends React.Component {
   }
 
   handleKeyPress({ code, shiftKey } = event) {
+    // FIXME: remove logging
     console.log(code);
+
     const key = `${shiftKey ? 'Shift+' : ''}${code}`;
 
     if (this.keys.includes(key)) {
@@ -201,7 +205,12 @@ class Modal extends React.Component {
   handleModeratorLock(key) {
     if (key === 'KeyM') {
       // TODO: clear answering team
-      this.clearTimer();
+      if (this.props.hasModeratorLock) {
+        this.startTimer();
+      } else {
+        this.clearTimer();
+      }
+
       this.props.toggleModeratorLock();
     }
   }
