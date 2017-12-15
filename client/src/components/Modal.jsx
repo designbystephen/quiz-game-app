@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { clamp } from 'lodash/number';
 import { round } from 'lodash/math';
-import { debounce } from 'lodash/function';
 import { ScoreControls } from './';
 import '../styles/components/modal.scss';
 
@@ -14,6 +13,17 @@ class Modal extends React.Component {
       tile: PropTypes.object.isRequired,
       hasModeratorLock: PropTypes.bool.isRequired,
       toggleModeratorLock: PropTypes.func.isRequired,
+      setActiveTeam: PropTypes.func.isRequired,
+      awardPoints: PropTypes.func.isRequired,
+      deductPoints: PropTypes.func.isRequired,
+
+      activeTeam: PropTypes.any,
+    };
+  }
+
+  static get defaultProps() {
+    return {
+      activeTeam: null,
     };
   }
 
@@ -24,6 +34,7 @@ class Modal extends React.Component {
       optionsOpen: false,
       stage: 0,
       elapsed: 0,
+      answeringTeam: null,
     };
 
     this.actionTimer = null;
@@ -42,12 +53,6 @@ class Modal extends React.Component {
   componentDidMount() {
     // bind and listen for keys
     window.onkeyup = event => this.handleKeyPress(event);
-  }
-
-  componentWillReceiveProps(props) {
-    if (props.setActiveTeam) {
-      props.setActiveTeam(null);
-    }
   }
 
   componentWillUnmount() {
@@ -175,26 +180,27 @@ class Modal extends React.Component {
     if (this.props.hasModeratorLock === false && this.actionTimer) {
       if (key === 'Digit1') {
         this.pauseTimer();
-        this.props.setActiveTeam(1);
       } else if (key === 'Digit2') {
         this.pauseTimer();
-        this.props.setActiveTeam(2);
       }
     }
   }
 
   handlePoints(key) {
-    if (this.props.activeTeam) {
+    if (this.state.answeringTeam !== null) {
       if (key === 'Shift+Equal') {
-        this.props.awardPoints(this.props.activeTeam, this.props.tile.id);
+        this.props.awardPoints(this.state.answeringTeam, this.props.tile.id);
+        this.props.setActiveTeam(this.state.answeringTeam);
       } else if (key === 'Minus') {
         this.props.deductPoints(this.props.activeTeam, this.props.tile.id);
+        // TODO: clear answeringTeam
       }
     }
   }
 
   handleModeratorLock(key) {
     if (key === 'KeyM') {
+      // TODO: clear answering team
       this.clearTimer();
       this.props.toggleModeratorLock();
     }

@@ -84,7 +84,7 @@ class Game extends React.Component {
 
   toggleModeratorLock() {
     this.setState(prevState => ({
-      hasModeratorLock: !prevState.hasModeratorLock,
+      hasModeratorLock: false,
     }));
   }
 
