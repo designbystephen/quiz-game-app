@@ -195,6 +195,8 @@ class Game extends React.Component {
             isLocked={this.isLocked}
             hasModeratorLock={this.state.hasModeratorLock}
             toggleModeratorLock={this.toggleModeratorLock}
+            activeTeam={this.state.activeTeam}
+            setActiveTeam={this.setActiveTeam}
           />
         }
       </div>

@@ -35,11 +35,13 @@ const ScoreControls = ({
   currentStage,
   startTimer,
   stopTimer,
+  toggleTimer,
   ...rest
 }) => (
   <div>
     <div>
       <button type="button" id="startTimerButton" onClick={startTimer}>Start Timer</button>
+      <button type="button" id="startTimerButton" onClick={toggleTimer}>Toggle Timer</button>
       <button type="button" id="startTimerButton" onClick={stopTimer}>Stop Timer</button>
     </div>
     <div>
@@ -73,7 +75,7 @@ const ScoreControls = ({
         <input
           id="moderatorLockCheckbox"
           type="checkbox"
-          onChange={() => toggleModeratorLock(tileId)}
+          onChange={() => toggleModeratorLock()}
           checked={hasModeratorLock}
         />
         Locked

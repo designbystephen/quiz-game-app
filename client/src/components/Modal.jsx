@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { clamp } from 'lodash/number';
 import { round } from 'lodash/math';
+import { debounce } from 'lodash/function';
 import { ScoreControls } from './';
 import '../styles/components/modal.scss';
 
@@ -11,6 +12,8 @@ class Modal extends React.Component {
       title: PropTypes.string.isRequired,
       onClose: PropTypes.func.isRequired,
       tile: PropTypes.object.isRequired,
+      hasModeratorLock: PropTypes.bool.isRequired,
+      toggleModeratorLock: PropTypes.func.isRequired,
     };
   }
 
@@ -25,17 +28,35 @@ class Modal extends React.Component {
 
     this.actionTimer = null;
     this.timeLimit = 8;
+    this.keys = ['Escape', 'KeyM', 'Digit1', 'Digit2', 'Shift+ArrowRight', 'Shift+ArrowLeft', 'Shift+Equal', 'Minus'];
 
     this.toggleOptions = this.toggleOptions.bind(this);
     this.nextStage = this.nextStage.bind(this);
     this.prevStage = this.prevStage.bind(this);
     this.startTimer = this.startTimer.bind(this);
     this.clearTimer = this.clearTimer.bind(this);
+    this.toggleTimer = this.toggleTimer.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+
+  componentDidMount() {
+    // bind and listen for keys
+    window.onkeyup = event => this.handleKeyPress(event);
+  }
+
+  componentWillReceiveProps(props) {
+    if (props.setActiveTeam) {
+      props.setActiveTeam(null);
+    }
   }
 
   componentWillUnmount() {
+    // clear and reset timer
     this.clearTimer();
-  } 
+
+    // unbind key listener
+    window.onkeyup = () => {};
+  }
 
   get stages(){
     return {
@@ -67,6 +88,14 @@ class Modal extends React.Component {
     });
   }
 
+  toggleTimer() {
+    if (this.actionTimer) {
+      this.clearTimer();
+    } else {
+      this.startTimer();
+    }
+  }
+
   startTimer() {
     this.clearTimer();
 
@@ -83,6 +112,11 @@ class Modal extends React.Component {
     this.setState({
       elapsed: 0,
     });
+  }
+
+  pauseTimer() {
+    clearInterval(this.actionTimer);
+    this.actionTimer = null;
   }
 
   nextStage() {
@@ -102,6 +136,70 @@ class Modal extends React.Component {
       optionsOpen: !prevState.optionsOpen,
     }));
   }
+
+  handleKeyPress({ code, shiftKey } = event) {
+    console.log(code);
+    const key = `${shiftKey ? 'Shift+' : ''}${code}`;
+
+    if (this.keys.includes(key)) {
+      this.handleEscape(key);
+      this.handleNextOrPrev(key);
+      this.handleModeratorLock(key);
+      this.handleBuzzer(key);
+      this.handlePoints(key);
+    }
+  }
+
+  handleEscape(key) {
+    // escape handler treats escape like a back button, depending on the stage/state
+    if (key === 'Escape') {
+      if (this.actionTimer) {
+        this.clearTimer();
+      } else if (this.state.stage > 0) {
+        this.prevStage();
+      } else {
+        this.props.onClose();
+      }
+    }
+  }
+
+  handleNextOrPrev(key) {
+    if (key === 'Shift+ArrowLeft') {
+      this.prevStage();
+    } else if (key === 'Shift+ArrowRight') {
+      this.nextStage();
+    }
+  }
+
+  handleBuzzer(key) {
+    if (this.props.hasModeratorLock === false && this.actionTimer) {
+      if (key === 'Digit1') {
+        this.pauseTimer();
+        this.props.setActiveTeam(1);
+      } else if (key === 'Digit2') {
+        this.pauseTimer();
+        this.props.setActiveTeam(2);
+      }
+    }
+  }
+
+  handlePoints(key) {
+    if (this.props.activeTeam) {
+      if (key === 'Shift+Equal') {
+        this.props.awardPoints(this.props.activeTeam, this.props.tile.id);
+      } else if (key === 'Minus') {
+        this.props.deductPoints(this.props.activeTeam, this.props.tile.id);
+      }
+    }
+  }
+
+  handleModeratorLock(key) {
+    if (key === 'KeyM') {
+      this.clearTimer();
+      this.props.toggleModeratorLock();
+    }
+  }
+
 
   render({ title, onClose, tile, ...rest } = this.props) {
     return (
@@ -136,6 +234,7 @@ class Modal extends React.Component {
                 currentStage={this.stages[this.state.stage]}
                 startTimer={this.startTimer}
                 stopTimer={this.clearTimer}
+                toggleTimer={this.toggleTimer}
                 {...rest}
               />
             }
