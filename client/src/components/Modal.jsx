@@ -30,6 +30,7 @@ class Modal extends React.Component {
     this.nextStage = this.nextStage.bind(this);
     this.prevStage = this.prevStage.bind(this);
     this.startTimer = this.startTimer.bind(this);
+    this.clearTimer = this.clearTimer.bind(this);
   }
 
   componentWillUnmount() {
@@ -134,6 +135,7 @@ class Modal extends React.Component {
                 nextStage={this.nextStage}
                 currentStage={this.stages[this.state.stage]}
                 startTimer={this.startTimer}
+                stopTimer={this.clearTimer}
                 {...rest}
               />
             }
