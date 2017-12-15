@@ -36,9 +36,13 @@ const ScoreControls = ({
   startTimer,
   stopTimer,
   toggleTimer,
+  answeringTeam,
   ...rest
 }) => (
   <div>
+    <div>
+      { answeringTeam }
+    </div>
     <div>
       <button type="button" id="startTimerButton" onClick={startTimer}>Start Timer</button>
       <button type="button" id="startTimerButton" onClick={toggleTimer}>Toggle Timer</button>

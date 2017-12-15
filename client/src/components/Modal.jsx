@@ -144,6 +144,12 @@ class Modal extends React.Component {
     }));
   }
 
+  setAnsweringTeam(teamNo) {
+    this.setState({
+      answeringTeam: teamNo
+    });
+  }
+
   handleKeyPress({ code, shiftKey } = event) {
     // FIXME: remove logging
     console.log(code);
@@ -182,10 +188,15 @@ class Modal extends React.Component {
 
   handleBuzzer(key) {
     if (this.props.hasModeratorLock === false && this.actionTimer) {
+      if (key === 'Digit1' || key === 'Digit2') {
+        this.clearTimer();
+        this.props.setModeratorLock(true);
+      }
+
       if (key === 'Digit1') {
-        this.pauseTimer();
+        this.setAnsweringTeam(1);
       } else if (key === 'Digit2') {
-        this.pauseTimer();
+        this.setAnsweringTeam(2);
       }
     }
   }
@@ -197,16 +208,16 @@ class Modal extends React.Component {
         this.props.setActiveTeam(this.state.answeringTeam);
       } else if (key === 'Minus') {
         this.props.deductPoints(this.props.activeTeam, this.props.tile.id);
-        // TODO: clear answeringTeam
+        this.setAnsweringTeam(null);
       }
     }
   }
 
   handleModeratorLock(key) {
     if (key === 'KeyM') {
-      // TODO: clear answering team
       if (this.props.hasModeratorLock) {
         this.startTimer();
+        this.setAnsweringTeam(null);
       } else {
         this.clearTimer();
       }
@@ -250,6 +261,7 @@ class Modal extends React.Component {
                 startTimer={this.startTimer}
                 stopTimer={this.clearTimer}
                 toggleTimer={this.toggleTimer}
+                answeringTeam={this.state.answeringTeam}
                 {...rest}
               />
             }
