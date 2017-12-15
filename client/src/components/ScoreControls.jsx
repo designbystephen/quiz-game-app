@@ -33,9 +33,13 @@ const ScoreControls = ({
   nextStage,
   prevStage,
   currentStage,
+  startTimer,
   ...rest
 }) => (
   <div>
+    <div>
+      <button type="button" id="startTimerButton" onClick={startTimer}>Start Timer</button>
+    </div>
     <div>
       <button type="button" id="prevStageButton" onClick={prevStage}>Prev</button>
       { currentStage }

@@ -19,11 +19,15 @@ class Modal extends React.Component {
     this.state = {
       optionsOpen: false,
       stage: 0,
+      elapsed: 0,
     };
+
+    this.actionTimer = null;
 
     this.toggleOptions = this.toggleOptions.bind(this);
     this.nextStage = this.nextStage.bind(this);
     this.prevStage = this.prevStage.bind(this);
+    this.startTimer = this.startTimer.bind(this);
   }
 
   get stages(){
@@ -32,6 +36,39 @@ class Modal extends React.Component {
       1: 'answer',
       2: 'recap'
     }
+  }
+
+  get actionTimer() {
+    return this.timer;
+  }
+
+  set actionTimer(value) {
+    this.timer = value;
+    return this.timer;
+  }
+
+  tick(interval) {
+    this.setState(prevState => ({
+      elapsed: prevState.elapsed + interval,
+    }));
+  }
+
+  startTimer() {
+    this.clearTimer();
+
+    const interval = 100;
+    this.actionTimer = setInterval(() => this.tick(interval), interval);
+
+    return this.actionTimer;
+  }
+
+  clearTimer() {
+    clearInterval(this.actionTimer);
+    this.actionTimer = null;
+
+    this.setState({
+      elapsed: 0,
+    });
   }
 
   nextStage() {
@@ -63,6 +100,7 @@ class Modal extends React.Component {
           <div className="modal__header">
             <div>
               { title }
+              { this.timer && this.state.elapsed }
             </div>
           </div>
           <div className="modal__content">
@@ -82,6 +120,7 @@ class Modal extends React.Component {
                 prevStage={this.prevStage}
                 nextStage={this.nextStage}
                 currentStage={this.stages[this.state.stage]}
+                startTimer={this.startTimer}
                 {...rest}
               />
             }
