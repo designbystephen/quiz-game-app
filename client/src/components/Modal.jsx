@@ -81,6 +81,12 @@ class Modal extends React.Component {
     return this.timer;
   }
 
+  setAnsweringTeam(teamNo) {
+    this.setState({
+      answeringTeam: teamNo,
+    });
+  }
+
   tick(interval) {
     this.setState((prevState) => {
       const nextTick = round(prevState.elapsed + (interval / 1000), 1);
@@ -144,12 +150,6 @@ class Modal extends React.Component {
     }));
   }
 
-  setAnsweringTeam(teamNo) {
-    this.setState({
-      answeringTeam: teamNo
-    });
-  }
-
   handleKeyPress({ code, shiftKey } = event) {
     // FIXME: remove logging
     console.log(code);
@@ -187,10 +187,9 @@ class Modal extends React.Component {
   }
 
   handleBuzzer(key) {
-    if (this.props.hasModeratorLock === false && this.actionTimer) {
+    if (this.props.hasModeratorLock === false && this.actionTimer && !this.state.answeringTeam) {
       if (key === 'Digit1' || key === 'Digit2') {
-        this.clearTimer();
-        this.props.setModeratorLock(true);
+        this.startTimer();
       }
 
       if (key === 'Digit1') {
@@ -207,8 +206,13 @@ class Modal extends React.Component {
         this.props.awardPoints(this.state.answeringTeam, this.props.tile.id);
         this.props.setActiveTeam(this.state.answeringTeam);
       } else if (key === 'Minus') {
-        this.props.deductPoints(this.props.activeTeam, this.props.tile.id);
+        this.props.deductPoints(this.state.answeringTeam, this.props.tile.id);
+      }
+
+      if (key === 'Shift+Equal' || key === 'Minus') {
+        this.clearTimer();
         this.setAnsweringTeam(null);
+        this.props.setModeratorLock(true);
       }
     }
   }
@@ -225,7 +229,6 @@ class Modal extends React.Component {
       this.props.toggleModeratorLock();
     }
   }
-
 
   render({ title, onClose, tile, ...rest } = this.props) {
     return (

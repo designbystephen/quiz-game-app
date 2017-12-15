@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ScoreCheck = ({ teamNo, deductPoints, awardPoints, isWrong, isRight, tileId }) => (
+const ScoreCheck = ({ teamNo, deductPoints, awardPoints, getIsWrong, getIsRight, tileId }) => (
   <span>
     <label htmlFor={`team${teamNo}AwardCheckbox`}>
       <input
         id={`team${teamNo}AwardCheckbox`}
         type="checkbox"
         onChange={() => awardPoints(teamNo, tileId)}
-        checked={isRight(teamNo, tileId) === true}
+        checked={getIsRight(teamNo, tileId) === true}
       />
       Right
     </label>
@@ -17,7 +17,7 @@ const ScoreCheck = ({ teamNo, deductPoints, awardPoints, isWrong, isRight, tileI
         id={`team${teamNo}DeductCheckbox`}
         type="checkbox"
         onChange={() => deductPoints(teamNo, tileId)}
-        checked={isWrong(teamNo, tileId) === true}
+        checked={getIsWrong(teamNo, tileId) === true}
       />
       Wrong
     </label>
@@ -45,8 +45,8 @@ const ScoreControls = ({
     </div>
     <div>
       <button type="button" id="startTimerButton" onClick={startTimer}>Start Timer</button>
-      <button type="button" id="startTimerButton" onClick={toggleTimer}>Toggle Timer</button>
-      <button type="button" id="startTimerButton" onClick={stopTimer}>Stop Timer</button>
+      <button type="button" id="toggleTimerButton" onClick={toggleTimer}>Toggle Timer</button>
+      <button type="button" id="stopTimerButton" onClick={stopTimer}>Stop Timer</button>
     </div>
     <div>
       <button type="button" id="prevStageButton" onClick={prevStage}>Prev</button>

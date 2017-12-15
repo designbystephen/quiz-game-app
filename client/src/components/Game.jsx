@@ -1,6 +1,7 @@
 import React from 'react';
 import { get } from 'lodash/object';
 import { findIndex, pull, union } from 'lodash/array';
+import { random } from 'lodash/number';
 import data from '../../mocks/christmas.json';
 import { getValueFromIndex } from '../utils/helpers';
 import { Board, Modal } from './';
@@ -12,7 +13,7 @@ class Game extends React.Component {
 
     this.state = {
       data,
-      activeTeam: null,
+      activeTeam: random(1, 2),
       activeTile: [0, 0],
       selectedTile: null,
       team1Right: [],
@@ -31,8 +32,8 @@ class Game extends React.Component {
     this.clearSelectedTile = this.clearSelectedTile.bind(this);
     this.awardPoints = this.awardPoints.bind(this);
     this.deductPoints = this.deductPoints.bind(this);
-    this.isRight = this.isRight.bind(this);
-    this.isWrong = this.isWrong.bind(this);
+    this.getIsRight = this.getIsRight.bind(this);
+    this.getIsWrong = this.getIsWrong.bind(this);
     this.toggleTileLock = this.toggleTileLock.bind(this);
     this.isLocked = this.isLocked.bind(this);
     this.toggleModeratorLock = this.toggleModeratorLock.bind(this);
@@ -89,22 +90,28 @@ class Game extends React.Component {
     });
   }
 
+  getIsRight(team, id) {
+    return get(this.state, `team${team}Right`, []).includes(id);
+  }
+
+  getIsWrong(team, id) {
+    return get(this.state, `team${team}Wrong`, []).includes(id);
+  }
+
   toggleModeratorLock() {
     this.setState(prevState => ({
       hasModeratorLock: !prevState.hasModeratorLock,
     }));
   }
 
-  isRight(team, id) {
-    return get(this.state, `team${team}Right`, []).indexOf(id) >= 0;
-  }
-
-  isWrong(team, id) {
-    return get(this.state, `team${team}Wrong`, []).indexOf(id) >= 0;
-  }
-
   isLocked(id) {
-    return this.state.lockedTiles.indexOf(id) >= 0;
+    return this.state.lockedTiles.includes(id);
+  }
+
+  randomizeActiveTeam() {
+    this.setState({
+      activeTeam: random(1, 2),
+    });
   }
 
   selectTile(col, row) {
@@ -135,7 +142,7 @@ class Game extends React.Component {
         [`team${team === '1' ? '2' : '1'}Right`]: pull(this.state[`team${team === '1' ? '2' : '1'}Right`], id),
       };
 
-      if (prevState[`team${team}Right`].indexOf(id) >= 0) {
+      if (prevState[`team${team}Right`].includes(id)) {
         // toggle points (remove awarded points)
         state[`team${team}Right`] = pull(prevState[`team${team}Right`], id);
       } else {
@@ -153,7 +160,7 @@ class Game extends React.Component {
         [`team${team}Right`]: pull(this.state[`team${team}Right`], id),
       };
 
-      if (prevState[`team${team}Wrong`].indexOf(id) >= 0) {
+      if (prevState[`team${team}Wrong`].includes(id)) {
         // toggle points (remove deducted points)
         state[`team${team}Wrong`] = pull(prevState[`team${team}Wrong`], id);
       } else {
@@ -167,7 +174,7 @@ class Game extends React.Component {
 
   toggleTileLock(id) {
     this.setState(prevState => ({
-      lockedTiles: prevState.lockedTiles.indexOf(id) >= 0
+      lockedTiles: prevState.lockedTiles.includes(id)
         ? pull(prevState.lockedTiles, id)
         : union(prevState.lockedTiles, [id]),
     }));
@@ -183,8 +190,8 @@ class Game extends React.Component {
           setActiveTeam={this.setActiveTeam}
           team1Score={this.team1Score}
           team2Score={this.team2Score}
-          isRight={this.isRight}
-          isWrong={this.isWrong}
+          getIsRight={this.getIsRight}
+          getIsWrong={this.getIsWrong}
           isLocked={this.isLocked}
           hasModeratorLock={this.state.hasModeratorLock}
           {...data}
@@ -196,8 +203,8 @@ class Game extends React.Component {
             onClose={this.clearSelectedTile}
             awardPoints={this.awardPoints}
             deductPoints={this.deductPoints}
-            isRight={this.isRight}
-            isWrong={this.isWrong}
+            getIsRight={this.getIsRight}
+            getIsWrong={this.getIsWrong}
             toggleTileLock={this.toggleTileLock}
             isLocked={this.isLocked}
             hasModeratorLock={this.state.hasModeratorLock}

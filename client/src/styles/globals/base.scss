@@ -13,3 +13,11 @@ body{
     margin: 0;
     padding: 0;
 }
+
+a,
+button{
+    cursor: pointer;
+    * {
+        cursor: pointer;
+    }
+}
