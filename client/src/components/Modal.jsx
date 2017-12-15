@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { debounce } from 'lodash/function';
 import { clamp } from 'lodash/number';
 import { round } from 'lodash/math';
 import { ScoreControls } from './';
@@ -17,6 +18,8 @@ class Modal extends React.Component {
       awardPoints: PropTypes.func.isRequired,
       deductPoints: PropTypes.func.isRequired,
       setModeratorLock: PropTypes.func.isRequired,
+      toggleTileLock: PropTypes.func.isRequired,
+      getIsLocked: PropTypes.func.isRequired,
 
       activeTeam: PropTypes.any,
     };
@@ -40,7 +43,7 @@ class Modal extends React.Component {
 
     this.actionTimer = null;
     this.timeLimit = 8;
-    this.keys = ['Escape', 'KeyM', 'Digit1', 'Digit2', 'Shift+ArrowRight', 'Shift+ArrowLeft', 'Shift+Equal', 'Minus'];
+    this.keys = ['Escape', 'KeyM', 'KeyX', 'Digit1', 'Digit2', 'Shift+ArrowRight', 'Shift+ArrowLeft', 'Shift+Equal', 'Minus'];
 
     this.toggleOptions = this.toggleOptions.bind(this);
     this.nextStage = this.nextStage.bind(this);
@@ -49,6 +52,7 @@ class Modal extends React.Component {
     this.clearTimer = this.clearTimer.bind(this);
     this.toggleTimer = this.toggleTimer.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleBuzzer = debounce(this.handleBuzzer, 16);
   }
 
   componentDidMount() {
@@ -162,6 +166,7 @@ class Modal extends React.Component {
       this.handleModeratorLock(key);
       this.handleBuzzer(key);
       this.handlePoints(key);
+      this.handleTileLock(key);
     }
   }
 
@@ -187,7 +192,12 @@ class Modal extends React.Component {
   }
 
   handleBuzzer(key) {
-    if (this.props.hasModeratorLock === false && this.actionTimer && !this.state.answeringTeam) {
+    if (
+      this.props.hasModeratorLock === false &&
+      this.actionTimer &&
+      !this.state.answeringTeam &&
+      !this.props.getIsLocked(this.props.tile.id)
+    ) {
       if (key === 'Digit1' || key === 'Digit2') {
         this.startTimer();
       }
@@ -230,6 +240,12 @@ class Modal extends React.Component {
     }
   }
 
+  handleTileLock(key) {
+    if (key === 'KeyX' && this.props.hasModeratorLock) {
+      this.props.toggleTileLock(this.props.tile.id);
+    }
+  }
+
   render({ title, onClose, tile, ...rest } = this.props) {
     return (
       <div className="modal">
@@ -239,9 +255,22 @@ class Modal extends React.Component {
             x Close
           </button>
           <div className="modal__header">
+            { title }
+          </div>
+          <div className="modal__status">
             <div>
-              { title }
-              { this.timer && this.state.elapsed }
+              Team 1
+            </div>
+
+            <div>
+              { this.timer
+                ? this.state.elapsed
+                : <i className="fas fa-lock" />
+              }
+            </div>
+
+            <div>
+              Team 2
             </div>
           </div>
           <div className="modal__content">

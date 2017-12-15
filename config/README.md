@@ -5,6 +5,7 @@
 * Windows only
 * http://joytokey.net/en/download
 * "Terminate" any open instances of JoyToKey (usually in the taskbar) before moving to the next step
+* BETTER DOUBLE CHECK THE LAST STEP, JoyToKey minimizes on default instead of closing
 * Move `Quizgame-JoyToKey.cfg` into JoyToKey installation folder
 * Launch and select the above profile
 

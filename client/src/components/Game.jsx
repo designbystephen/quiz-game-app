@@ -35,7 +35,7 @@ class Game extends React.Component {
     this.getIsRight = this.getIsRight.bind(this);
     this.getIsWrong = this.getIsWrong.bind(this);
     this.toggleTileLock = this.toggleTileLock.bind(this);
-    this.isLocked = this.isLocked.bind(this);
+    this.getIsLocked = this.getIsLocked.bind(this);
     this.toggleModeratorLock = this.toggleModeratorLock.bind(this);
     this.setModeratorLock = this.setModeratorLock.bind(this);
   }
@@ -84,9 +84,9 @@ class Game extends React.Component {
     });
   }
 
-  setModeratorLock(isLocked) {
+  setModeratorLock(getIsLocked) {
     this.setState({
-      hasModeratorLock: isLocked,
+      hasModeratorLock: getIsLocked,
     });
   }
 
@@ -104,7 +104,7 @@ class Game extends React.Component {
     }));
   }
 
-  isLocked(id) {
+  getIsLocked(id) {
     return this.state.lockedTiles.includes(id);
   }
 
@@ -192,7 +192,7 @@ class Game extends React.Component {
           team2Score={this.team2Score}
           getIsRight={this.getIsRight}
           getIsWrong={this.getIsWrong}
-          isLocked={this.isLocked}
+          getIsLocked={this.getIsLocked}
           hasModeratorLock={this.state.hasModeratorLock}
           {...data}
         />
@@ -206,7 +206,7 @@ class Game extends React.Component {
             getIsRight={this.getIsRight}
             getIsWrong={this.getIsWrong}
             toggleTileLock={this.toggleTileLock}
-            isLocked={this.isLocked}
+            getIsLocked={this.getIsLocked}
             hasModeratorLock={this.state.hasModeratorLock}
             setModeratorLock={this.setModeratorLock}
             toggleModeratorLock={this.toggleModeratorLock}

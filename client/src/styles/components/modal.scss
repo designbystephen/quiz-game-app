@@ -52,13 +52,18 @@
   }
 
   &__header{
-    display: flex;
     align-items: center;
     height: 10%;
     font-size: $modal-title-font-size;
   }
 
-  &__header > *{
+  &__status{
+    display: flex;
+    align-items: center;
+    align-content: center;
+  }
+
+  &__status > *{
     text-align: center;
     flex-grow: 1;
   }

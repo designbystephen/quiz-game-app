@@ -27,7 +27,7 @@ const ScoreCheck = ({ teamNo, deductPoints, awardPoints, getIsWrong, getIsRight,
 const ScoreControls = ({
   tileId,
   toggleTileLock,
-  isLocked,
+  getIsLocked,
   hasModeratorLock,
   toggleModeratorLock,
   nextStage,
@@ -68,7 +68,7 @@ const ScoreControls = ({
           id="tileLockCheckbox"
           type="checkbox"
           onChange={() => toggleTileLock(tileId)}
-          checked={isLocked(tileId)}
+          checked={getIsLocked(tileId)}
         />
         Locked
       </label>
