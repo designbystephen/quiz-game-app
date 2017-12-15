@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { clamp } from 'lodash/number';
+import { round } from 'lodash/math';
 import { ScoreControls } from './';
 import '../styles/components/modal.scss';
 
@@ -23,12 +24,17 @@ class Modal extends React.Component {
     };
 
     this.actionTimer = null;
+    this.timeLimit = 8;
 
     this.toggleOptions = this.toggleOptions.bind(this);
     this.nextStage = this.nextStage.bind(this);
     this.prevStage = this.prevStage.bind(this);
     this.startTimer = this.startTimer.bind(this);
   }
+
+  componentWillUnmount() {
+    this.clearTimer();
+  } 
 
   get stages(){
     return {
@@ -48,9 +54,16 @@ class Modal extends React.Component {
   }
 
   tick(interval) {
-    this.setState(prevState => ({
-      elapsed: prevState.elapsed + interval,
-    }));
+    this.setState((prevState) => {
+      const nextTick = round(prevState.elapsed + (interval / 1000), 1);
+      if (nextTick >= this.timeLimit) {
+        this.clearTimer();
+      }
+
+      return {
+        elapsed: nextTick >= this.timeLimit ? 0 : nextTick,
+      };
+    });
   }
 
   startTimer() {
