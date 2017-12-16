@@ -46,7 +46,7 @@ class Modal extends React.Component {
 
     this.actionTimer = null;
     this.timeLimit = 8;
-    this.keys = ['Escape', 'KeyM', 'KeyX', 'Digit1', 'Digit2', 'Shift+ArrowRight', 'Shift+ArrowLeft', 'Shift+Equal', 'Minus'];
+    this.keys = ['Escape', 'KeyM', 'KeyX', 'Digit1', 'Digit2', 'PageDown', 'PageUp', 'Equal', 'Minus'];
 
     this.toggleOptions = this.toggleOptions.bind(this);
     this.nextStage = this.nextStage.bind(this);
@@ -198,9 +198,9 @@ class Modal extends React.Component {
   }
 
   handleNextOrPrev(key) {
-    if (key === 'Shift+ArrowLeft') {
+    if (key === 'PageUp') {
       this.prevStage();
-    } else if (key === 'Shift+ArrowRight') {
+    } else if (key === 'PageDown') {
       this.nextStage();
     }
   }
@@ -241,7 +241,7 @@ class Modal extends React.Component {
         this.props.setModeratorLock(true);
       }
 
-      if (key === 'Shift+Equal') {
+      if (key === 'Equal') {
         this.props.awardPoints(this.state.answeringTeam, this.props.tile.id);
         this.props.setActiveTeam(this.state.answeringTeam);
         this.sounds.chaChing.play();
