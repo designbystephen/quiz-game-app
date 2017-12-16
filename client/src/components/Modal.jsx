@@ -21,8 +21,8 @@ class Modal extends React.Component {
       toggleTileLock: PropTypes.func.isRequired,
       getIsLocked: PropTypes.func.isRequired,
       getIsWrong: PropTypes.func.isRequired,
-      team1Score: PropTypes.string.isRequired,
-      team2Score: PropTypes.string.isRequired,
+      team1Score: PropTypes.number.isRequired,
+      team2Score: PropTypes.number.isRequired,
       activeTeam: PropTypes.any,
     };
   }
@@ -55,6 +55,14 @@ class Modal extends React.Component {
     this.toggleTimer = this.toggleTimer.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleBuzzer = debounce(this.handleBuzzer, 16);
+
+    this.sounds = {
+      bikeHorn: new Audio('/assets/sounds/bike-horn.mp3'),
+      chaChing: new Audio('/assets/sounds/cha-ching.mp3'),
+      sadTrombone: new Audio('/assets/sounds/sad-trombone.mp3'),
+      tickTock: new Audio('/assets/sounds/tick-tock.mp3'),
+      tinyButton: new Audio('/assets/sounds/tiny-button-push.mp3'),
+    };
   }
 
   componentDidMount() {

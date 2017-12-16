@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   context: path.join(__dirname, '../client'),
@@ -61,5 +62,6 @@ module.exports = {
       template: path.join(__dirname, '../server/views/index.dev.ejs'),
       inject: false,
     }),
+    new CopyWebpackPlugin([ { from: path.join(__dirname,'../server/public/assets'), to: 'assets' } ])
   ],
 };
