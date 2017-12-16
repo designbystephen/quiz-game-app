@@ -1,0 +1,27 @@
+$animation-timing: .33s;
+
+/* simple "from > to" */
+@keyframes moveUp {
+  from {
+      transform: translateY(100%);
+      opacity: .25;
+      
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+@keyframes moveIn {
+  from {
+      transform: translateX(33%);
+      opacity: .25;
+      
+  }
+  to {
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+

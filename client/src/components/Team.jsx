@@ -12,7 +12,9 @@ const Team = ({ children, number, isActive, isLocked }) => (
       [isLocked, 'team--locked'],
     )}
   >
+    { number === '2' && isActive && <i className="fas fa-fw fa-star" />}
     { children }
+    { number === '1' && isActive && <i className="fas fa-fw fa-star" />}
   </span>
 );
 

@@ -23,6 +23,7 @@
   }
 
   &__score{
-    font-size: $score-board-team-score-font-size;
+    font-size: $score-board-team-score-font-size * 1.25;
+    margin-bottom: -5px;
   }
 }

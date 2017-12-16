@@ -14,18 +14,27 @@
   text-align: center;
   width: 100%;
 
+  &:hover,
+  &--active{
+    background-color: $tile-hover-bg-color;
+    text-decoration: underline
+  }
+
   &--header{
     height: $tile-height / 2;
     line-height: $tile-height / 2;
     font-size: $tile-header-font-size;
+
   }
   
   &--team1{
     color: $team-1-color;
+    text-shadow: $team-1-shadow;
   }
   
   &--team2{
     color: $team-2-color;
+    text-shadow: $team-2-shadow;
   }
   
   &--locked{

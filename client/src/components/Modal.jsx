@@ -281,22 +281,24 @@ class Modal extends React.Component {
             </Team>
           </div>
           <div className="modal__content">
-            <div>
-              { this.stages[this.state.stage] === 'question' && tile.question }
-              { this.stages[this.state.stage] === 'answer' && tile.answer }
-              { this.stages[this.state.stage] === 'recap' && 
-                <div>
-                  {`$${this.props.team1Score} versus $${this.props.team2Score}`}
-                  <p>
-                    {`Team ${this.props.activeTeam} has control of the board`}
-                  </p>
-                </div>
-              }
-            </div>
+            { this.stages[this.state.stage] === 'question' &&
+              <div className="modal__blurb">{tile.question}</div>
+            }
+            { this.stages[this.state.stage] === 'answer' &&
+              <div className="modal__blurb">{tile.answer}</div>
+            }
+            { this.stages[this.state.stage] === 'recap' &&
+              <div className="modal__blurb">
+                {`Team ${this.props.activeTeam} has control of the board`}
+              </div>
+            }
           </div>
           <div className="modal__controls">
             <button type="button" className="modal__show-controls" onClick={this.toggleOptions}>
-              { this.state.optionsOpen ? '\u2013' : '\u22EF' }
+              { this.state.optionsOpen
+                ? <i className="fas fa-fw fa-caret-down" />
+                : <i className="fas fa-fw fa-ellipsis-h" />
+              }
             </button>
 
             {this.state.optionsOpen &&

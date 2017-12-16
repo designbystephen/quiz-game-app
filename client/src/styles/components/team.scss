@@ -1,18 +1,21 @@
 @import "../globals/variables";
 
 .team{
-  opacity: .75;
-
   &--1{
     color: $team-1-color;
+    text-shadow: $team-1-shadow;
   }
+
   &--2{
     color: $team-2-color;
+    text-shadow: $team-2-shadow;
   }
+
   &--active:not(.team--locked){
     opacity: 1;
     text-decoration: underline;
   }
+
   &--locked{
     text-decoration: line-through;
   }

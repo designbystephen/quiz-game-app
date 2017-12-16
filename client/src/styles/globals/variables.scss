@@ -1,23 +1,40 @@
-$base-bg-color: #000;
+@import "./animations";
+
+$base-bg-color: #202225;
 $base-color: #fff;
-$base-font-family: Arial, Helvetica, sans-serif;
+$base-font-family: 'Source Sans Pro', sans-serif;
 $base-font-size: 14px;
 $base-font: $base-font-size $base-font-family;
 
-$team-1-color: red;
-$team-2-color: blue;
+$red: #F04747;
+$green: #43B581;
+$yellow: #f1c40f;
+
+$text-shadow: 0px 2px 1px rgba(0,0,0,0.90), 2px 0px 1px rgba(0,0,0,0.90);
+$text-shadow-red: 0px 2px 1px darken($red, 45%), 2px 0px 1px darken($red, 45%);
+$text-shadow-green: 0px 2px 1px darken($green, 45%), 2px 0px 1px darken($green, 45%);
+
+$team-1-color: $red;
+$team-1-shadow: $text-shadow-red;
+
+$team-2-color: $green;
+$team-2-shadow: $text-shadow-green;
 
 $score-board-title-font-size: 1.50vmax;
-$score-board-team-name-font-size: .75vmax;
-$score-board-team-score-font-size: 1.50vmax;
+$score-board-team-name-font-size: 1.25vmax;
+$score-board-team-score-font-size: 1.25vmax;
+
+$category-color: $yellow;
 
 $tile-height: 16.66666666666667vh;
 $tile-font-size: 2.5vmax;
 $tile-header-font-size: 1.50vmax;
-$tile-hover-bg-color: rgba(0, 0, 0, 0.25);
+$tile-hover-bg-color: rgba(0, 0, 0, 0.15);
 
 $overlay-blur: 1px;
 
 $modal-font-size: 3.5vmin;
 $modal-title-font-size: 2.75vmin;
-$modal-overlay-bg: rgba(224,243,250,.10);
+$modal-overlay-bg: rgba(0,0,0,.50);
+$modal-appear-animation: $animation-timing moveUp;
+$modal-next-animation: $animation-timing moveIn;
