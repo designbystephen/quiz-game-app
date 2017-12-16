@@ -20,11 +20,12 @@
     position: absolute;
     color: inherit;
     background-color: transparent;
+    font-size: $modal-title-font-size / 1.25;
     border: 0;
     padding: 0;
     margin: 0;
     top: 12px;
-    right: 12px;
+    right: 16px;
   }
 
   &__overlay{
@@ -55,15 +56,12 @@
     align-items: center;
     height: 10%;
     font-size: $modal-title-font-size;
-  }
-
-  &__status{
     display: flex;
     align-items: center;
     align-content: center;
   }
 
-  &__status > *{
+  &__header > *{
     text-align: center;
     flex-grow: 1;
   }

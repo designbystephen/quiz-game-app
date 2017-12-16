@@ -1,0 +1,7 @@
+@import "../globals/variables";
+
+.value{
+  &--locked{
+    text-decoration: line-through;
+  }
+}

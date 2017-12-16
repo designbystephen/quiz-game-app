@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { debounce } from 'lodash/function';
 import { clamp } from 'lodash/number';
 import { round } from 'lodash/math';
-import { ScoreControls } from './';
+import { ScoreControls, Team, Value } from './';
 import '../styles/components/modal.scss';
 
 class Modal extends React.Component {
@@ -20,7 +20,9 @@ class Modal extends React.Component {
       setModeratorLock: PropTypes.func.isRequired,
       toggleTileLock: PropTypes.func.isRequired,
       getIsLocked: PropTypes.func.isRequired,
-
+      getIsWrong: PropTypes.func.isRequired,
+      team1Score: PropTypes.string.isRequired,
+      team2Score: PropTypes.string.isRequired,
       activeTeam: PropTypes.any,
     };
   }
@@ -155,9 +157,6 @@ class Modal extends React.Component {
   }
 
   handleKeyPress({ code, shiftKey } = event) {
-    // FIXME: remove logging
-    console.log(code);
-
     const key = `${shiftKey ? 'Shift+' : ''}${code}`;
 
     if (this.keys.includes(key)) {
@@ -252,31 +251,47 @@ class Modal extends React.Component {
         <div className="modal__overlay" />
         <div className="modal__card">
           <button type="button" className="modal__close" onClick={onClose}>
-            x Close
+            <i className="fas fa-times" />
           </button>
           <div className="modal__header">
-            { title }
-          </div>
-          <div className="modal__status">
-            <div>
+            <Team
+              number="1"
+              isActive={this.state.answeringTeam === 1}
+              isLocked={this.props.getIsWrong(1, this.props.tile.id)}
+            >
               Team 1
-            </div>
-
+            </Team>
             <div>
-              { this.timer
-                ? this.state.elapsed
-                : <i className="fas fa-lock" />
-              }
+              <div>
+                { this.timer
+                  ? this.state.elapsed
+                  : <i className="fas fa-lock" />
+                }
+              </div>
+              <Value isLocked={this.props.getIsLocked(this.props.tile.id)}>
+                { title }
+              </Value>
             </div>
-
-            <div>
+            <Team
+              number="2"
+              isActive={this.state.answeringTeam === 2}
+              isLocked={this.props.getIsWrong(2, this.props.tile.id)}
+            >
               Team 2
-            </div>
+            </Team>
           </div>
           <div className="modal__content">
             <div>
               { this.stages[this.state.stage] === 'question' && tile.question }
               { this.stages[this.state.stage] === 'answer' && tile.answer }
+              { this.stages[this.state.stage] === 'recap' && 
+                <div>
+                  {`$${this.props.team1Score} versus $${this.props.team2Score}`}
+                  <p>
+                    {`Team ${this.props.activeTeam} has control of the board`}
+                  </p>
+                </div>
+              }
             </div>
           </div>
           <div className="modal__controls">

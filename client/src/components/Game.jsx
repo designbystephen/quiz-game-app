@@ -212,6 +212,8 @@ class Game extends React.Component {
             toggleModeratorLock={this.toggleModeratorLock}
             activeTeam={this.state.activeTeam}
             setActiveTeam={this.setActiveTeam}
+            team1Score={this.team1Score}
+            team2Score={this.team2Score}
           />
         }
       </div>
