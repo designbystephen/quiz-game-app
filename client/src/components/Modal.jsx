@@ -107,6 +107,7 @@ class Modal extends React.Component {
       if (nextTick >= this.timeLimit) {
         this.props.setModeratorLock(true);
         this.clearTimer();
+        this.sounds.bikeHorn.play();
       }
 
       return {
@@ -125,6 +126,8 @@ class Modal extends React.Component {
 
   startTimer() {
     this.clearTimer();
+    this.sounds.tickTock.loop = true;
+    this.sounds.tickTock.play();
 
     const interval = 100;
     this.actionTimer = setInterval(() => this.tick(interval), interval);
@@ -135,6 +138,9 @@ class Modal extends React.Component {
   clearTimer() {
     clearInterval(this.actionTimer);
     this.actionTimer = null;
+
+    this.sounds.tickTock.currentTime = 0;
+    this.sounds.tickTock.pause();
 
     this.setState({
       elapsed: 1,
@@ -207,6 +213,8 @@ class Modal extends React.Component {
     ) {
       if (key === 'Digit1' || key === 'Digit2') {
         this.startTimer();
+        this.sounds.currentTime = 0;
+        this.sounds.tinyButton.play();
       }
 
       if (key === 'Digit1') {
@@ -222,8 +230,10 @@ class Modal extends React.Component {
       if (key === 'Shift+Equal') {
         this.props.awardPoints(this.state.answeringTeam, this.props.tile.id);
         this.props.setActiveTeam(this.state.answeringTeam);
+        this.sounds.chaChing.play();
       } else if (key === 'Minus') {
         this.props.deductPoints(this.state.answeringTeam, this.props.tile.id);
+        this.sounds.sadTrombone.play();
       }
 
       if (key === 'Shift+Equal' || key === 'Minus') {
