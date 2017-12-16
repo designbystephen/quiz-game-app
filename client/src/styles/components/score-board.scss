@@ -12,6 +12,21 @@
     font-size: $score-board-title-font-size;
   }
 
+
+  &__edit{
+    border: 0;
+    background-color: transparent;
+    color: #fff;
+    padding: 0;
+    margin: 0;
+    font-size: $score-board-title-font-size * .66;
+    opacity: .33;
+
+    &:hover{
+      opacity: 1;
+    }
+  }
+
   &__team{
     font-size: $score-board-team-name-font-size;
     opacity: .75;
@@ -21,6 +36,8 @@
       text-align: right;
     }
   }
+
+  
 
   &__score{
     font-size: $score-board-team-score-font-size * 1.25;

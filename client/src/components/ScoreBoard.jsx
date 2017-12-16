@@ -19,6 +19,10 @@ const ScoreBoard = ({ title, activeTeam, setActiveTeam, team1Score, team2Score }
     </div>
     <div className="score-board__title">
       { title }
+      &nbsp;
+      <button className="score-board__edit" type="button" id="gameEditButton">
+        <i className="fa-fw fas fa-pencil-alt" />
+      </button>
     </div>
     <div 
       className="score-board__team score-board__team--right"
