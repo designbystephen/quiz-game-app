@@ -1,21 +1,17 @@
 {
   
-  "title": "Schroeder Christmas 2017",
+  "title": "Christmas Quiz",
   
   "teams": [
-    {
-      "name": "Team 1"
-    },
-    {
-      "name": "Team 2"
-    }
+    "He-Elves",
+    "She-Elves"
   ],
 
   "categories": [
-    "Songs",
-    "Movies",
-    "Family",
-    "Food/Drink",
+    "The Grinch",
+    "Christmas Songs",
+    "Who Said It",
+    "Name That Movie",
     "Misc"
   ],
 
@@ -23,136 +19,136 @@
     [
       {
         "id": "1_1",
-        "question": "This holiday jingle is about a reindeer hit-and-run on Christmas Eve.",
-        "answer": "Grandma Got Run Over by a Reindeer"
+        "question": "I wouldn’t touch you with this length of pole.",
+        "answer": "39 1/2 foot pole"
       },
       {
         "id": "1_2",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "His heart was how many sizes too small?",
+        "answer": "2 Sizes"
       },
       {
         "id": "1_3",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "He took the last can of...",
+        "answer": "Who Hash"
       },
       {
         "id": "1_4",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "He's as cuddly as this desert flora.",
+        "answer": "Cactus"
       },
       {
         "id": "1_5",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "Where does the Grinch call home?",
+        "answer": "My Crumpit"
       }
     ],
     [
       {
         "id": "2_1",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "Finish this lyric: \"Make my wish come true...\"",
+        "answer": "All I want for Christmas is you."
       },
       {
         "id": "2_2",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "Given on the 11th day of Christmas",
+        "answer": "11 Pipers Piping"
       },
       {
         "id": "2_3",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "In \"Winter Wonderland\" this bird has gone away.",
+        "answer": "Blue Bird"
       },
       {
         "id": "2_4",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "\"...I'm offering this simple phrase to kids from one to ____\"",
+        "answer": "Ninety Two"
       },
       {
         "id": "2_5",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "\"... Fast away the _____ passes. ... fa-la-la-la-la ...\"",
+        "answer": "Old Year"
       }
     ],
     [
       {
         "id": "3_1",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "Bah humbug!",
+        "answer": "Ebenezer Scrooge"
       },
       {
         "id": "3_2",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "We elves try to stick to the four main food groups: candy, candy canes, candy corns and syrup.",
+        "answer": "Buddy the Elf"
       },
       {
         "id": "3_3",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "Observe the bumble's one weakness. ... The bumble sinks! Ha ha!",
+        "answer": "Yukon Cornelius"
       },
       {
         "id": "3_4",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "You want the moon? Just say the word and I'll throw a lasso around it and pull it down.",
+        "answer": "George Bailey"
       },
       {
         "id": "3_5",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "Save the neck for me, Clark.",
+        "answer": "Cousin Eddie"
       }
     ],
     [
       {
         "id": "4_1",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "You'll shoot your eye out kid!",
+        "answer": "A Christmas Story"
       },
       {
         "id": "4_2",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "Strange, isn't it? Each man's life touches so many other lives. When he isn't around he leaves an awful hole, doesn't he?",
+        "answer": "TIts a Wonderful Life"
       },
       {
         "id": "4_3",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "He never got his picture on bubble gum cards, did he? Have you ever seen his picture on a bubble gum card? Hmmm? How can you say someone is great who's never had his picture on bubble gum cards?",
+        "answer": "A Charlie Brown Christmas"
       },
       {
         "id": "4_4",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "Keep the change ya filthy animal.",
+        "answer": "Home Alone"
       },
       {
         "id": "4_5",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "Grace? She passed away 30 years ago!",
+        "answer": "Christmas Vacation"
       }
     ],
     [
       {
         "id": "5_1",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "What did frosty the snowman have for a nose?",
+        "answer": "A Button"
       },
       {
         "id": "5_2",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "How much did Lucy charge for a psychiatric session in the classic \"Christmas TV special A Charlie Brown Christmas\"",
+        "answer": "Five Cents"
       },
       {
         "id": "5_3",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "In the Christmas Classic, It's A Wonderful Life, what happened every time a bell rang?",
+        "answer": "An Angel Gets Its Wings"
       },
       {
         "id": "5_4",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "According to the movie \"The Elf\", the best way to spread christmas cheer is what?",
+        "answer": "Singing Loud for All to Hear"
       },
       {
         "id": "5_5",
-        "question": "this is a question",
-        "answer": "This is an answer"
+        "question": "How many gifts would you receive if you received all of the gifts in the song \"The Twelve Days of Christmas\"?",
+        "answer": "364"
       }
     ]
   ]

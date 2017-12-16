@@ -23,6 +23,7 @@ const Board = ({ categories = [], tile, ...rest }) => (
 
 Board.propTypes = {
   categories: PropTypes.array.isRequired,
+  tile: PropTypes.object,
 };
 
 export default Board;

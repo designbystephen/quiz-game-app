@@ -1,4 +1,20 @@
+@import "../globals/variables";
+
 .game{
   position: relative;
   z-index: 0;
+  padding: $game-padding;
+
+  &--small{
+    padding: $game-padding * 1.20;
+  }
+  &--medium{
+    padding: $game-padding * 1.40;
+  }
+  &--large{
+    padding: $game-padding * 1.60;
+  }
+  &--x-large{
+    padding: $game-padding * 1.80;
+  }
 }

@@ -206,21 +206,27 @@ class Modal extends React.Component {
   }
 
   handleBuzzer(key) {
+    const team1Wrong = this.props.getIsWrong(1, this.props.tile.id);
+    const team2Wrong = this.props.getIsWrong(2, this.props.tile.id);
+
     if (
       this.props.hasModeratorLock === false &&
       this.actionTimer &&
       !this.state.answeringTeam &&
-      !this.props.getIsLocked(this.props.tile.id)
+      !this.props.getIsLocked(this.props.tile.id) &&
+      (!team1Wrong || !team2Wrong)
     ) {
-      if (key === 'Digit1' || key === 'Digit2') {
+      const buzz = () => {
         this.startTimer();
         this.sounds.currentTime = 0;
         this.sounds.tinyButton.play();
       }
 
-      if (key === 'Digit1' && !this.props.getIsWrong(1, this.props.tile.id)) {
+      if (key === 'Digit1' && !team1Wrong) {
+        buzz();
         this.setAnsweringTeam(1);
-      } else if (key === 'Digit2' && !this.props.getIsWrong(1, this.props.tile.id)) {
+      } else if (key === 'Digit2' && !team2Wrong) {
+        buzz();
         this.setAnsweringTeam(2);
       }
     }
@@ -228,26 +234,29 @@ class Modal extends React.Component {
 
   handlePoints(key) {
     if (this.state.answeringTeam !== null) {
+
+      const clearBuzzer = () => {
+        this.clearTimer();
+        this.setAnsweringTeam(null);
+        this.props.setModeratorLock(true);
+      }
+
       if (key === 'Shift+Equal') {
         this.props.awardPoints(this.state.answeringTeam, this.props.tile.id);
         this.props.setActiveTeam(this.state.answeringTeam);
         this.sounds.chaChing.play();
         this.props.setTileLock(false, this.props.tile.id);
+        clearBuzzer();
       } else if (key === 'Minus') {
         this.props.deductPoints(this.state.answeringTeam, this.props.tile.id);
         this.sounds.sadTrombone.play();
-      }
-
-      if (key === 'Shift+Equal' || key === 'Minus') {
-        this.clearTimer();
-        this.setAnsweringTeam(null);
-        this.props.setModeratorLock(true);
+        clearBuzzer();
       }
     }
   }
 
   handleModeratorLock(key) {
-    if (key === 'KeyM') {
+    if (key === 'KeyM' && !this.props.getIsLocked(this.props.tile.id)) {
       if (this.props.hasModeratorLock) {
         this.startTimer();
         this.setAnsweringTeam(null);
