@@ -4,9 +4,7 @@ import Home from './pages/Home';
 import './styles/globals/base.scss';
 
 const App = () => (
-  <div>
-    <Route exact path="/" component={Home} />
-  </div>
+  <Route exact path="/" component={Home} />
 );
 
 export default App;

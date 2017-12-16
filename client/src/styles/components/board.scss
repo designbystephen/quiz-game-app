@@ -2,6 +2,7 @@
 
 .board{
   overflow: hidden;
+  height: 100%;
 
   &__header{
     height: $tile-height / 2;
@@ -9,6 +10,7 @@
 
   &__tiles{
     display: flex;
+    height: 100%;
   }
 
   &--blur{

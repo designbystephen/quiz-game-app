@@ -340,6 +340,7 @@ class Game extends React.Component {
             setActiveTeam={this.setActiveTeam}
             team1Score={this.team1Score}
             team2Score={this.team2Score}
+            teams={data.teams}
           />
         }
       </div>

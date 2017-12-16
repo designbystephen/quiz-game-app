@@ -274,7 +274,7 @@ class Modal extends React.Component {
     }
   }
 
-  render({ title, onClose, tile, ...rest } = this.props) {
+  render({ title, onClose, tile, teams, ...rest } = this.props) {
     return (
       <div className="modal">
         <div className="modal__overlay" />
@@ -288,7 +288,7 @@ class Modal extends React.Component {
               isActive={this.state.answeringTeam === 1}
               isLocked={this.props.getIsWrong(1, this.props.tile.id)}
             >
-              Team 1
+              { teams[0] }
             </Team>
             <div>
               <div>
@@ -306,7 +306,7 @@ class Modal extends React.Component {
               isActive={this.state.answeringTeam === 2}
               isLocked={this.props.getIsWrong(2, this.props.tile.id)}
             >
-              Team 2
+              { teams[1] }
             </Team>
           </div>
           <div className="modal__content">
@@ -318,7 +318,7 @@ class Modal extends React.Component {
             }
             { this.stages[this.state.stage] === 'recap' &&
               <div className="modal__blurb">
-                {`Team ${this.props.activeTeam} has control of the board`}
+                {`${this.props.activeTeam === '1' ? teams[0] : teams[1]} control of the board`}
               </div>
             }
           </div>

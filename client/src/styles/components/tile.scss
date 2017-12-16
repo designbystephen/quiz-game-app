@@ -2,8 +2,8 @@
 
 .tile{
   text-align: center;
-  height: $tile-height;
-  line-height: $tile-height;
+  min-height: $tile-height;
+  // line-height: $tile-height;
   font-size: $tile-font-size;
   display: block;
   background-color: transparent;
