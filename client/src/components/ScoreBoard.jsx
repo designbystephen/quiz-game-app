@@ -8,12 +8,12 @@ const ScoreBoard = ({ title, activeTeam, setActiveTeam, team1Score, team2Score }
   <div className="score-board">
     <div
       className="score-board__team"
-      onClick={() => setActiveTeam(1)}
+      onClick={() => setActiveTeam('1')}
     >
       <div className="score-board__score">
         $ {team1Score}
       </div>
-      <Team number="1" isActive={activeTeam === 1}>
+      <Team number="1" isActive={activeTeam === "1"}>
         Team 1
       </Team>
     </div>
@@ -26,12 +26,12 @@ const ScoreBoard = ({ title, activeTeam, setActiveTeam, team1Score, team2Score }
     </div>
     <div 
       className="score-board__team score-board__team--right"
-      onClick={() => setActiveTeam(2)}
+      onClick={() => setActiveTeam('2')}
     >
       <div className="score-board__score">
         $ {team2Score}
       </div>
-      <Team number="2" isActive={activeTeam === 2}>
+      <Team number="2" isActive={activeTeam === "2"}>
         Team 2
       </Team>
     </div>
@@ -41,7 +41,7 @@ const ScoreBoard = ({ title, activeTeam, setActiveTeam, team1Score, team2Score }
 ScoreBoard.propTypes = {
   title: PropTypes.string.isRequired,
   setActiveTeam: PropTypes.func.isRequired,
-  activeTeam: PropTypes.number,
+  activeTeam: PropTypes.string,
 };
 
 export default ScoreBoard;

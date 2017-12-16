@@ -23,6 +23,7 @@ class Modal extends React.Component {
       getIsWrong: PropTypes.func.isRequired,
       team1Score: PropTypes.number.isRequired,
       team2Score: PropTypes.number.isRequired,
+      setTileLock: PropTypes.func.isRequired,
       activeTeam: PropTypes.any,
     };
   }
@@ -217,9 +218,9 @@ class Modal extends React.Component {
         this.sounds.tinyButton.play();
       }
 
-      if (key === 'Digit1') {
+      if (key === 'Digit1' && !this.props.getIsWrong(1, this.props.tile.id)) {
         this.setAnsweringTeam(1);
-      } else if (key === 'Digit2') {
+      } else if (key === 'Digit2' && !this.props.getIsWrong(1, this.props.tile.id)) {
         this.setAnsweringTeam(2);
       }
     }
@@ -231,6 +232,7 @@ class Modal extends React.Component {
         this.props.awardPoints(this.state.answeringTeam, this.props.tile.id);
         this.props.setActiveTeam(this.state.answeringTeam);
         this.sounds.chaChing.play();
+        this.props.setTileLock(false, this.props.tile.id);
       } else if (key === 'Minus') {
         this.props.deductPoints(this.state.answeringTeam, this.props.tile.id);
         this.sounds.sadTrombone.play();

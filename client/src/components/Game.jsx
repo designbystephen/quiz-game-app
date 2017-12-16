@@ -1,7 +1,7 @@
 import React from 'react';
 import { get } from 'lodash/object';
 import { findIndex, pull, union } from 'lodash/array';
-import { random } from 'lodash/number';
+import { random, clamp } from 'lodash/number';
 import data from '../../mocks/christmas.json';
 import { getValueFromIndex } from '../utils/helpers';
 import { Board, Modal } from './';
@@ -13,7 +13,7 @@ class Game extends React.Component {
 
     this.state = {
       data,
-      activeTeam: random(1, 2),
+      activeTeam: `${random(1, 2)}`,
       activeTile: [0, 0],
       selectedTile: null,
       team1Right: [],
@@ -24,6 +24,8 @@ class Game extends React.Component {
       hasModeratorLock: true,
       escapeFunc: () => {},
     };
+
+    this.keys = ['Digit1', 'Digit2', 'ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft', 'KeyW', 'KeyD', 'KeyS', 'KeyA'];
 
     // event handlers
     this.setActiveTile = this.setActiveTile.bind(this);
@@ -38,6 +40,18 @@ class Game extends React.Component {
     this.getIsLocked = this.getIsLocked.bind(this);
     this.toggleModeratorLock = this.toggleModeratorLock.bind(this);
     this.setModeratorLock = this.setModeratorLock.bind(this);
+    this.setTileLock = this.setTileLock.bind(this);
+    this.getIsActiveTile = this.getIsActiveTile.bind(this);
+  }
+
+  componentDidMount() {
+    // bind and listen for keys
+    window.onkeyup = event => this.handleKeyPress(event);
+  }
+
+  componentWillUnmount() {
+    // unbind key listener
+    window.onkeyup = () => {};
   }
 
   get selectedCategory() {
@@ -74,7 +88,7 @@ class Game extends React.Component {
 
   setActiveTeam(number) {
     this.setState({
-      activeTeam: number,
+      activeTeam: `${number}`,
     });
   }
 
@@ -96,6 +110,10 @@ class Game extends React.Component {
 
   getIsWrong(team, id) {
     return get(this.state, `team${team}Wrong`, []).includes(id);
+  }
+
+  getIsActiveTile(col, row) {
+    return this.state.activeTile[0] === col && this.state.activeTile[1] === row;
   }
 
   toggleModeratorLock() {
@@ -180,6 +198,47 @@ class Game extends React.Component {
     }));
   }
 
+  setTileLock(remove, id) {
+    this.setState(prevState => ({
+      lockedTiles: remove ? pull(prevState.lockedTiles, id) : union(prevState.lockedTiles, [id]),
+    }));
+  }
+
+  handleKeyPress({ code, shiftKey } = event) {
+    const key = `${shiftKey ? 'Shift+' : ''}${code}`;
+
+    if (this.keys.includes(key) && !this.state.selectedTile) {
+      this.handleDirections(key);
+      this.handleSelect(key);
+    }
+  }
+
+  handleDirections(key) {
+    const activeTile = this.state.activeTile;
+
+    if (this.state.activeTeam === '1' && key === 'ArrowUp' || this.state.activeTeam === '2' && key === 'KeyW') {
+      this.setActiveTile(activeTile[0], clamp(activeTile[1] - 1, 0, 4));
+    }
+
+    if (this.state.activeTeam === '1' && key === 'ArrowRight' || this.state.activeTeam === '2' && key === 'KeyD') {
+      this.setActiveTile(clamp(activeTile[0] + 1, 0, 4), activeTile[1]);
+    }
+
+    if (this.state.activeTeam === '1' && key === 'ArrowDown' || this.state.activeTeam === '2' && key === 'KeyS') {
+      this.setActiveTile(activeTile[0], clamp(activeTile[1] + 1, 0, 4));
+    }
+
+    if (this.state.activeTeam === '1' && key === 'ArrowLeft' || this.state.activeTeam === '2' && key === 'KeyA') {
+      this.setActiveTile(clamp(activeTile[0] - 1, 0, 4), activeTile[1]);
+    }
+  }
+
+  handleSelect(key) {
+    if (this.state.activeTeam === '1' && key === 'Digit1' || this.state.activeTeam === '2' && key === 'Digit2') {
+      this.selectTile(this.state.activeTile[0], this.state.activeTile[1]);
+    }
+  }
+
   render() {
     return (
       <div className="game">
@@ -194,6 +253,7 @@ class Game extends React.Component {
           getIsWrong={this.getIsWrong}
           getIsLocked={this.getIsLocked}
           hasModeratorLock={this.state.hasModeratorLock}
+          getIsActiveTile={this.getIsActiveTile}
           {...data}
         />
         { this.state.selectedTile &&
@@ -206,6 +266,7 @@ class Game extends React.Component {
             getIsRight={this.getIsRight}
             getIsWrong={this.getIsWrong}
             toggleTileLock={this.toggleTileLock}
+            setTileLock={this.setTileLock}
             getIsLocked={this.getIsLocked}
             hasModeratorLock={this.state.hasModeratorLock}
             setModeratorLock={this.setModeratorLock}
