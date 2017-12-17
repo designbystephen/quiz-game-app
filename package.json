@@ -1,28 +1,20 @@
 {
-  "name": "react-expressjs",
-  "version": "4.0.0",
-  "description": "Boilerplate for ReactJS project with ExpressJS server",
-  "main": "server/bin/server.js",
+  "name": "quizgame",
+  "version": "0.1.0",
+  "description": "A Jeopardy like quiz game application designed to be played with large groups in teams of two",
+  "main": "client/src/App.jsx",
+  "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --config webpack/client.dev.js --port 5000",
-    "build": "npm run build:client && npm run build:server",
-    "build:server": "cross-env NODE_ENV=production webpack --config webpack/server.prod.js --progress",
-    "build:client": "cross-env NODE_ENV=production webpack --config webpack/client.prod.js --progress",
-    "start": "cd server && node bin/server.js",
-    "lint": "eslint --ext .jsx,.js ./"
+    "dev": "webpack-dev-server --config webpack/client.dev.js --port 5000"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/designbystephen"
+    "url": "https://github.com/designbystephen/quizgame.git"
   },
   "keywords": [
+    "game",
     "react",
-    "express",
-    "webpack",
-    "babel",
-    "expressjs",
-    "react router v4",
-    "redux"
+    "JavaScript"
   ],
   "author": "Stephen Roth",
   "license": "MIT",
@@ -64,17 +56,5 @@
     "webpack": "^3.5.3",
     "webpack-dev-server": "^2.4.1",
     "webpack-node-externals": "^1.2.0"
-  },
-  "bundledDependencies": [
-    "cross-env",
-    "ejs",
-    "express",
-    "prop-types",
-    "react",
-    "react-dom",
-    "react-redux",
-    "react-router",
-    "react-router-dom",
-    "redux"
-  ]
+  }
 }
