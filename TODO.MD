@@ -1,7 +1,11 @@
 # TODO
-> Known areas of improvment application wide
+> Known areas of improvement application wide
 
 ## Configuration
+
+### Controls
+- Document controls
+- Add configurations and setup instructions for Wii Remotes
 
 ### Webpack
 - Shared config for server/client/dev
@@ -17,6 +21,7 @@
 ## Client
 
 - Refactor data storage and usage across the game to allow for API endpoints instead of manipulating store of data 
+- HMR is active but does not trigger re-renders in the application
 
 ## Server
 
