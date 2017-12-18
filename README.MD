@@ -46,4 +46,4 @@
 | Key A   | Move tile selection right | Joystick Right     | Classic Single Button |
 | Key S   | Move tile selection down  | Joystick Down      | Classic Single Button |
 | Key D   | Move tile selection left  | Joystick Left      | Classic Single Button |
-| Digit 1 | Select Tile, Buzz In      | Button 1           | Classic Single Button |
+| Digit 2 | Select Tile, Buzz In      | Button 1           | Classic Single Button |
