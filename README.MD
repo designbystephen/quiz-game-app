@@ -16,7 +16,7 @@
 ---
 
 ## Controls
-- [/config](Control Configuration Setup)
+- [config](Control Configuration Setup)
 
 ### Moderator Controls
 
