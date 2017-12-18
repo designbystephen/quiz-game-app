@@ -5,13 +5,15 @@
 
 ## Development
 
-- TODO
+- Start webpack-dev-server with `npm run dev`
+- Defaults to port 5000
+- HMR is enabled
 
 ---
 
 ## Production
 
-- TODO
+- TODO: Production build script and configuration
 
 ---
 
