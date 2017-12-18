@@ -11,6 +11,7 @@
 - Shared config for server/client/dev
 - Named bundle to match application/package name
 - Package version available in code
+- Configure production build and deployment
 
 ### Styles
 - ~~Use HMR ready styles for development~~
