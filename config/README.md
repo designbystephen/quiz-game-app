@@ -1,5 +1,5 @@
 # Joystick configurations
-> Reccomended for use with "classic controllers" that use a single stick and button
+> Recommended for use with "classic controllers" that use a single stick and button
 
 ## JoyToKey Configuration (Windows)
 * http://joytokey.net/en/download

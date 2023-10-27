@@ -46,7 +46,17 @@ class Modal extends React.Component {
 
     this.actionTimer = null;
     this.timeLimit = 8;
-    this.keys = ['Escape', 'KeyM', 'KeyX', 'Digit1', 'Digit2', 'PageDown', 'PageUp', 'Equal', 'Minus'];
+    this.keys = [
+      'Escape', // back
+      'KeyM', // moderator lock
+      'KeyX', // tile lock
+      'Digit1', // team 1 buzzer
+      'Digit2', // team 2 buzzer
+      'PageDown', // next stage for tile
+      'PageUp', // prev stage for tile
+      'Equal', // add score to active team
+      'Minus', // deduct score to active team
+    ];
 
     this.toggleOptions = this.toggleOptions.bind(this);
     this.nextStage = this.nextStage.bind(this);
@@ -55,7 +65,7 @@ class Modal extends React.Component {
     this.clearTimer = this.clearTimer.bind(this);
     this.toggleTimer = this.toggleTimer.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.handleBuzzer = debounce(this.handleBuzzer, 16);
+    this.handleBuzzer = debounce(this.handleBuzzer, 64, { trailing: true, leading: true, maxWait: 1000 });
 
     this.sounds = {
       bikeHorn: new Audio('/assets/sounds/bike-horn.mp3'),
