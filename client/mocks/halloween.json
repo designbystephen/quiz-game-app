@@ -1,0 +1,156 @@
+{
+  
+  "title": "Halloween Trivia",
+  
+  "teams": [
+    "Us",
+    "Them"
+  ],
+
+  "categories": [
+    "Creature Feature",
+    "Trick-or-Treat",
+    "Movies",
+    "The Nightmare Before Christmas",
+    "Misc"
+  ],
+
+  "tiles": [
+    [
+      {
+        "id": "1_1",
+        "question": "A prehistoric sea creature awakened by nuclear testing.",
+        "answer": "Godzilla"
+      },
+      {
+        "id": "1_2",
+        "question": "A giant ape that climbs the Empire State Building.",
+        "answer": "King Kong"
+      },
+      {
+        "id": "1_3",
+        "question": "A towering behemoth of a man with bolts in his neck.",
+        "answer": "Frankenstein or Frankenstein's Monster"
+      },
+      {
+        "id": "1_4",
+        "question": "He lives in the catacombs beneath the Paris Opera House and is known as the \"Opera Ghost\".",
+        "answer": "The Phantom of the Opera"
+      },
+      {
+        "id": "1_5",
+        "question": "This infamous immortal was based on Vlad the Impaler.",
+        "answer": "Count Dracula"
+      }
+    ],
+    [
+      {
+        "id": "2_1",
+        "question": "This chewy, taffy-like treat comes in various flavors and often includes jokes on the wrapper.",
+        "answer": "Laffy-Taffy"
+      },
+      {
+        "id": "2_2",
+        "question": "A rainbow of chewy treats often found in small red packets.",
+        "answer": "Skittles"
+      },
+      {
+        "id": "2_3",
+        "question": "This chewy, fruit-flavored gelatin is often shaped like creatures you may find in the dirt.",
+        "answer": "Gummy Worms"
+      },
+      {
+        "id": "2_4",
+        "question": "Unless you go to that \"one house\" that usually has full sized candy bars... expect this size in your candy bag.",
+        "answer": "Fun-Size Candy Bars"
+      },
+      {
+        "id": "2_5",
+        "question": "This homemade concoction is made from sugar, butter, and corn syrup and popcorn.",
+        "answer": "Caramel Corn or Popcorn Balls"
+      }
+    ],
+    [
+      {
+        "id": "3_1",
+        "question": "In this film Michael Myers escapes from a mental institution and returns to his hometown on Halloween night to terrorize the town.",
+        "answer": "Halloween"
+      },
+      {
+        "id": "3_2",
+        "question": "In \"Hocus Pocus\" what song does Winifred sing at a Halloween party to bewitch the parents of Salem?",
+        "answer": "I Put a Spell on You"
+      },
+      {
+        "id": "3_3",
+        "question": "In this movie a young boy ventures into the land of the dead during the Mexican holiday of Dia de los Muertos.",
+        "answer": "Coco"
+      },
+      {
+        "id": "3_4",
+        "question": "These Delicious peanut butter candies were used to lure an alien out of hiding in this 1982 film.",
+        "answer": "E.T. the Extra-Terrestrial"
+      },
+      {
+        "id": "3_5",
+        "question": "In \"Beetlejuice\", which iconic song is featured during the memorable dinner scene where characters are forced to dance and lip-sync?",
+        "answer": "Day-O (The Banana Boat Song)"
+      }
+    ],
+    [
+      
+      {
+        "id": "4_1",
+        "question": "Who is the Pumpkin King of Halloween Town?",
+        "answer": "Jack Skellington"
+      },
+      {
+        "id": "4_2",
+        "question": "What is the name of Jack Skellington's loyal dog?",
+        "answer": "Zero"
+      },
+      {
+        "id": "4_3",
+        "question": "What holiday world does Jack Skellington accidentally discover in a tree?",
+        "answer": "Christmas Town"
+      },
+      {
+        "id": "4_4",
+        "question": "What is the name of the ragdoll character who tries to thwart Jack Skellington's Christmas plans?",
+        "answer": "Sally"
+      },
+      {
+        "id": "4_5",
+        "question": "What is the name of the villainous, trick-or-treating trio that serve as Boogey's henchmen?",
+        "answer": "Lock, Shock, and Barrel"
+      }
+    ],
+    [
+      {
+        "id": "5_1",
+        "question": "What is the term for a male witch, often used to describe a practitioner of modern witchcraft?",
+        "answer": "Warlock"
+      },
+      {
+        "id": "5_2",
+        "question": "Who is the iconic witch known for her green complexion, pointy hat, and appearance in \"The Wizard of Oz\"?",
+        "answer": "The Wicked Witch of the West"
+      },
+      {
+        "id": "5_3",
+        "question": "What historical event in the late 17th century saw the infamous witch trials that resulted in the execution of numerous people accused of practicing witchcraft?",
+        "answer": "The Salem Witch Trials"
+      },
+      {
+        "id": "5_4",
+        "question": "In the Harry Potter series, what is the name of the school for witches and wizards that Harry attends?",
+        "answer": "Hogwarts"
+      },
+      {
+        "id": "5_5",
+        "question": "Which classic fairy tale features a wicked witch who lures children into her gingerbread house?",
+        "answer": "Hansel and Gretel"
+      }
+    ]
+  ]
+}
